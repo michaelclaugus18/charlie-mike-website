@@ -100,47 +100,44 @@
 
   main{ padding:64px 24px 100px; }
 
-  /* Vault gate */
+  /* Vault gate — small, tucked into the corner */
   .vault-gate{
-    max-width:520px;
-    margin:0 auto 56px;
-    background:var(--charcoal);
-    border:1px solid var(--border);
-    border-left:4px solid var(--amber);
-    border-radius:4px;
-    padding:28px 32px;
-    text-align:center;
-  }
-  .vault-gate-text{
-    font-size:0.92rem;
-    color:#DDE3E7;
-    margin:0 0 18px;
-    line-height:1.55;
+    display:flex;
+    justify-content:flex-end;
+    margin:0 0 32px;
   }
   .vault-gate-form{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    justify-content:center;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:var(--charcoal);
+    border:1px solid var(--border);
+    border-radius:2px;
+    padding:5px;
   }
   .vault-gate-form input{
-    flex:1 1 200px;
+    width:120px;
     background:var(--black);
     border:1px solid var(--border);
     border-radius:2px;
     color:#F2F1EC;
-    padding:12px 14px;
+    padding:7px 9px;
     font-family:var(--font-body);
-    font-size:0.95rem;
+    font-size:0.8rem;
   }
   .vault-gate-form input:focus{ outline:none; border-color:var(--amber); }
+  .vault-gate-form .btn{ padding:7px 14px; font-size:0.75rem; }
   .vault-gate-error{
     display:none;
+    position:absolute;
+    right:0;
+    margin-top:6px;
     color:#D98277;
-    font-size:0.85rem;
-    margin:14px 0 0;
+    font-size:0.75rem;
     font-weight:600;
+    white-space:nowrap;
   }
+  .vault-gate-wrap{ position:relative; }
   body.vault-unlocked .vault-gate{ display:none; }
 
   /* View toggle */
@@ -322,12 +319,13 @@
   <div class="container">
 
     <div class="vault-gate" id="vaultGate">
-      <p class="vault-gate-text">The current and next missions are public. Past and future missions beyond that are archived for members only — enter the password to unlock the rest of the vault.</p>
-      <form class="vault-gate-form" id="vaultGateForm">
-        <input type="password" id="vaultGateInput" placeholder="Vault password" autocomplete="off" required>
-        <button type="submit" class="btn btn-solid btn-small">Unlock</button>
-      </form>
-      <p class="vault-gate-error" id="vaultGateError">Incorrect password. Try again.</p>
+      <div class="vault-gate-wrap">
+        <form class="vault-gate-form" id="vaultGateForm">
+          <input type="password" id="vaultGateInput" placeholder="Password" autocomplete="off" required>
+          <button type="submit" class="btn btn-solid">Unlock</button>
+        </form>
+        <p class="vault-gate-error" id="vaultGateError">Incorrect password.</p>
+      </div>
     </div>
 
     <div class="view-toolbar">
@@ -370,7 +368,7 @@
         <div class="archive-card-foot">
           <span class="badge badge-planning">Planning</span>
           <span class="no-brief locked-action">Briefing not yet published</span>
-          <span class="lock-note">&#128274; Members only</span>
+          <span class="lock-note">&#128274; Locked</span>
         </div>
       </div>
 
@@ -383,7 +381,7 @@
         <div class="archive-card-foot">
           <span class="badge badge-planning">Planning</span>
           <span class="no-brief locked-action">Briefing not yet published</span>
-          <span class="lock-note">&#128274; Members only</span>
+          <span class="lock-note">&#128274; Locked</span>
         </div>
       </div>
 
@@ -396,7 +394,7 @@
         <div class="archive-card-foot">
           <span class="badge badge-planning">Planning</span>
           <a href="mt-lindsey.html" class="brief-link locked-action">View mission briefing</a>
-          <span class="lock-note">&#128274; Members only</span>
+          <span class="lock-note">&#128274; Locked</span>
         </div>
       </div>
 
