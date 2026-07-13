@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charlie Mike — Mission Brochure</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500;600&family=Barlow+Semi+Condensed:wght@500;600&display=swap');
+
+  :root {
+    --black:    #0D0D0D;
+    --charcoal: #1C1C1C;
+    --steel:    #2E3A3F;
+    --slate:    #4A5660;
+    --fog:      #8A9BA8;
+    --mist:     #C8D4DB;
+    --snow:     #F0F4F6;
+    --white:    #FFFFFF;
+    --od:       #4B5320;
+    --od-light: #6B7530;
+    --od-dim:   #3A4118;
+    --amber:    #C8820A;
+    --danger:   #A63228;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--snow);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+    font-size: 16px;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background: var(--charcoal);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 60px 64px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid var(--od);
+  }
+  .cover-texture {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 3px);
+    pointer-events: none;
+  }
+  .cover-grid {
+    position: absolute; top: 0; left: 0; right: 0; height: 100%;
+    background-image: linear-gradient(rgba(75,83,32,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(75,83,32,0.07) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+  .cover-top {
+    position: absolute; top: 40px; left: 64px; right: 64px;
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+  .cover-callsign {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 13px;
+    letter-spacing: 0.28em; text-transform: uppercase; color: var(--od);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .cover-callsign::before { content: ''; display: block; width: 24px; height: 2px; background: var(--od); }
+  .cover-edition { font-family: 'Barlow Condensed', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--slate); }
+  .cover-headline { position: relative; z-index: 1; }
+  .cover-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--od); margin-bottom: 18px; }
+  .cover-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(72px, 10vw, 130px); line-height: 0.88; text-transform: uppercase; color: var(--white); letter-spacing: -0.01em; margin-bottom: 28px; }
+  .cover-title span { color: var(--od); }
+  .cover-sub { font-family: 'Barlow', sans-serif; font-weight: 300; font-size: 17px; color: var(--fog); max-width: 480px; line-height: 1.6; margin-bottom: 48px; letter-spacing: 0.01em; }
+  .cover-meta { display: flex; gap: 40px; align-items: flex-end; }
+  .cover-stat { border-left: 2px solid var(--od); padding-left: 14px; }
+  .cover-stat-val { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 28px; color: var(--white); line-height: 1; }
+  .cover-stat-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fog); margin-top: 4px; }
+
+  /* ── SECTION ── */
+  .section { max-width: 900px; margin: 0 auto; padding: 80px 40px; }
+  .section-rule { width: 100%; height: 1px; background: var(--steel); margin-bottom: 64px; }
+  .section-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--od); margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+  .section-eyebrow::after { content: ''; display: block; flex: 1; height: 1px; background: var(--steel); }
+  .section-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(40px, 5vw, 60px); text-transform: uppercase; line-height: 0.95; color: var(--white); letter-spacing: -0.01em; margin-bottom: 20px; }
+  .section-intro { font-size: 17px; color: var(--fog); font-weight: 300; max-width: 620px; line-height: 1.7; margin-bottom: 52px; }
+
+  /* ── MISSION CARD ── */
+  .mission-card { background: var(--charcoal); border: 1px solid var(--steel); border-top: 3px solid var(--od); margin-bottom: 60px; }
+  .mission-header { padding: 36px 40px 28px; border-bottom: 1px solid var(--steel); display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; }
+  .mission-number { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--od); margin-bottom: 8px; }
+  .mission-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 36px; text-transform: uppercase; color: var(--white); line-height: 1; letter-spacing: 0.01em; }
+  .mission-subtitle { font-size: 14px; color: var(--fog); margin-top: 8px; font-weight: 300; }
+  .mission-badges { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+  .badge { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; padding: 4px 10px; border: 1px solid; }
+  .badge-hard { color: var(--danger); border-color: var(--danger); }
+  .badge-permit { color: var(--amber); border-color: var(--amber); }
+  .badge-class { color: var(--fog); border-color: var(--slate); }
+
+  /* ── STATS ── */
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); border-bottom: 1px solid var(--steel); }
+  .stat-cell { padding: 22px 28px; border-right: 1px solid var(--steel); }
+  .stat-cell:last-child { border-right: none; }
+  .stat-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate); margin-bottom: 6px; }
+  .stat-value { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; color: var(--white); line-height: 1; }
+  .stat-unit { font-family: 'Barlow', sans-serif; font-weight: 300; font-size: 13px; color: var(--fog); margin-top: 3px; }
+
+  /* ── ITINERARY ── */
+  .itinerary { padding: 36px 40px; }
+  .itinerary-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--od); margin-bottom: 28px; }
+  .day-block { margin-bottom: 36px; display: grid; grid-template-columns: 120px 1fr; gap: 24px; }
+  .day-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--od); padding-top: 2px; border-top: 2px solid var(--od); }
+  .day-name { font-weight: 300; font-size: 11px; color: var(--slate); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+  .day-heading { font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 600; font-size: 16px; color: var(--white); margin-bottom: 10px; }
+  .day-body { font-size: 14px; color: var(--fog); line-height: 1.7; font-weight: 300; }
+  .timeline { margin-top: 14px; display: flex; flex-direction: column; gap: 0; }
+  .tl-item { display: grid; grid-template-columns: 70px 1fr; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--steel); }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-time { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 13px; color: var(--od-light); letter-spacing: 0.04em; padding-top: 1px; }
+  .tl-desc { font-size: 14px; color: var(--fog); font-weight: 300; line-height: 1.55; }
+  .tl-desc strong { color: var(--snow); font-weight: 500; }
+
+  /* ── CAUTION / NOTE ── */
+  .caution { background: rgba(166,50,40,0.10); border-left: 3px solid var(--danger); padding: 16px 20px; margin: 20px 0; }
+  .caution-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--danger); margin-bottom: 6px; }
+  .caution p { font-size: 13px; color: var(--fog); font-weight: 300; line-height: 1.6; }
+  .note { background: rgba(75,83,32,0.12); border-left: 3px solid var(--od); padding: 14px 18px; margin: 16px 0; }
+  .note p { font-size: 13px; color: var(--fog); line-height: 1.6; font-weight: 300; }
+  .note strong { color: var(--snow); font-weight: 500; }
+
+  /* ── GEAR / FOOD ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 36px 40px; border-top: 1px solid var(--steel); }
+  .list-block-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--od); margin-bottom: 16px; }
+  .checklist { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .checklist li { font-size: 13px; color: var(--fog); font-weight: 300; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+  .checklist li::before { content: '—'; color: var(--od); flex-shrink: 0; font-weight: 600; margin-top: 1px; }
+  .checklist li strong { color: var(--snow); font-weight: 500; }
+
+  /* ── MEAL ROWS ── */
+  .meal-row { display: grid; grid-template-columns: 90px 1fr; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--steel); align-items: start; }
+  .meal-row:last-child { border-bottom: none; }
+  .meal-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--od); padding-top: 1px; }
+  .meal-desc { font-size: 13px; color: var(--fog); font-weight: 300; line-height: 1.55; }
+
+  /* ── LOGISTICS ── */
+  .logistics { padding: 36px 40px; border-top: 1px solid var(--steel); }
+  .logistics-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--od); margin-bottom: 20px; }
+  .logistics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+  .logistics-item-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate); margin-bottom: 4px; }
+  .logistics-item-val { font-size: 14px; color: var(--snow); font-weight: 400; line-height: 1.6; }
+  .logistics-item-val a { color: var(--od-light); text-decoration: none; }
+  .logistics-item-val a:hover { text-decoration: underline; }
+
+  /* ── UPCOMING ── */
+  .upcoming-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; margin-top: 40px; }
+  .upcoming-card { background: var(--charcoal); padding: 28px; border-top: 2px solid var(--steel); position: relative; overflow: hidden; }
+  .upcoming-card::before { content: 'UPCOMING'; position: absolute; top: 14px; right: 16px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 9px; letter-spacing: 0.2em; color: var(--steel); }
+  .upcoming-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--slate); margin-bottom: 10px; }
+  .upcoming-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; text-transform: uppercase; color: var(--white); line-height: 1.05; margin-bottom: 10px; }
+  .upcoming-desc { font-size: 13px; color: var(--slate); font-weight: 300; line-height: 1.55; }
+  .upcoming-season { display: inline-block; margin-top: 14px; font-family: 'Barlow Condensed', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--od); border: 1px solid var(--od-dim); padding: 3px 8px; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--charcoal); border-top: 3px solid var(--od); padding: 48px 64px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; }
+  .footer-brand { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 28px; text-transform: uppercase; color: var(--white); letter-spacing: 0.05em; }
+  .footer-brand span { color: var(--od); }
+  .footer-note { font-size: 12px; color: var(--slate); font-weight: 300; max-width: 340px; line-height: 1.6; text-align: right; }
+
+  @media (max-width: 640px) {
+    .two-col, .day-block { grid-template-columns: 1fr; }
+    .mission-header { grid-template-columns: 1fr; }
+    .cover, .footer { padding: 40px 28px; }
+    .cover-top { left: 28px; right: 28px; }
+    .section, .itinerary, .two-col, .logistics { padding-left: 24px; padding-right: 24px; }
+  }
+  @media print {
+    body { background: white; color: black; }
+    .cover { page-break-after: always; min-height: auto; }
+    .mission-card { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-texture"></div>
+  <div class="cover-grid"></div>
+  <div class="cover-top">
+    <div class="cover-callsign">Charlie Mike</div>
+    <div class="cover-edition">Vol. I · Summer 2026</div>
+  </div>
+  <div class="cover-headline">
+    <div class="cover-eyebrow">Mission Brochure</div>
+    <h1 class="cover-title">Continue<br>The <span>Mission</span></h1>
+    <p class="cover-sub">A field-tested guide to hard weekends in the Colorado backcountry. Curated routes, full itineraries, and everything you need to execute.</p>
+    <div class="cover-meta">
+      <div class="cover-stat"><div class="cover-stat-val">1</div><div class="cover-stat-label">Mission active</div></div>
+      <div class="cover-stat"><div class="cover-stat-val">Denver</div><div class="cover-stat-label">Base of operations</div></div>
+      <div class="cover-stat"><div class="cover-stat-val">14,259'</div><div class="cover-stat-label">Current objective</div></div>
+      <div class="cover-stat"><div class="cover-stat-val">Adv.</div><div class="cover-stat-label">Fitness level</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MISSION 01 -->
+<div class="section">
+  <div class="section-rule"></div>
+  <div class="section-eyebrow">Active Mission</div>
+  <h2 class="section-title">Mission 01</h2>
+  <p class="section-intro">Your inaugural objective. Physically demanding, technically honest, and close enough to Denver to work as a Friday-to-Sunday commitment. This is where Charlie Mike earns its name.</p>
+
+  <div class="mission-card">
+
+    <!-- Header -->
+    <div class="mission-header">
+      <div>
+        <div class="mission-number">Mission 01 · August 14–16, 2026</div>
+        <div class="mission-title">Longs Peak — Keyhole Route</div>
+        <div class="mission-subtitle">Rocky Mountain National Park · Estes Park, Colorado · ~1 hr 45 min from Denver</div>
+      </div>
+      <div class="mission-badges">
+        <span class="badge badge-class">Class 3</span>
+        <span class="badge badge-hard">Strenuous</span>
+        <span class="badge badge-permit">Park Entrance Fee Required</span>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-cell"><div class="stat-label">Distance</div><div class="stat-value">15</div><div class="stat-unit">miles round trip</div></div>
+      <div class="stat-cell"><div class="stat-label">Elevation Gain</div><div class="stat-value">5,100</div><div class="stat-unit">feet</div></div>
+      <div class="stat-cell"><div class="stat-label">Summit</div><div class="stat-value">14,259'</div><div class="stat-unit">Longs Peak</div></div>
+      <div class="stat-cell"><div class="stat-label">Duration</div><div class="stat-value">9–14</div><div class="stat-unit">hours car to car</div></div>
+      <div class="stat-cell"><div class="stat-label">Group Size</div><div class="stat-value">Max 8</div><div class="stat-unit">persons</div></div>
+      <div class="stat-cell"><div class="stat-label">Budget</div><div class="stat-value">~$80</div><div class="stat-unit">per person</div></div>
+    </div>
+
+    <!-- Itinerary -->
+    <div class="itinerary">
+      <div class="itinerary-title">Full Itinerary</div>
+
+      <!-- FRIDAY -->
+      <div class="day-block">
+        <div class="day-label">Day 1<div class="day-name">Friday, Aug 14</div></div>
+        <div class="day-content">
+          <div class="day-heading">Drive Up · Claim Sites · Rest</div>
+          <div class="day-body">
+            The goal Friday is simple: arrive early enough to claim 2–3 adjacent campsites for the group, eat well, hydrate aggressively, and be asleep by 8pm. A 3am Saturday start is non-negotiable to summit safely before afternoon lightning.
+          </div>
+
+          <div class="note" style="margin-top:14px;">
+            <p><strong>Campground reality check:</strong> Longs Peak Campground is first-come, first-served — no reservations. It has only 26 sites. On peak summer weekends it fills Friday afternoon. Arrive by 2–3pm to secure your site. Each site holds a maximum of 8 people, so a full group of 8 fits on a single site. There is <strong>no potable water</strong> at the campground — bring all drinking water from Denver. Pay $30/site/night via the Recreation.gov Scan &amp; Pay app (download before leaving — cell service is poor at the campground).</p>
+          </div>
+
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-time">12:00 PM</div>
+              <div class="tl-desc"><strong>Depart Denver.</strong> Earlier is better — campsite availability is first-come. Stage at REI Denver Flagship (1416 Platte St) for a central carpool meetup. Drive I-25 N → US-36 W through Boulder → CO-7 W through Lyons and Allenspark. Approx. 1 hr 45 min to campground.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">2:00 PM</div>
+              <div class="tl-desc"><strong>Arrive Longs Peak Campground.</strong> Claim your site immediately. Do not leave to explore; your site is not held. Set up camp, get organized. The campground is 0.25 mi walk from the trailhead.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">3:00 PM</div>
+              <div class="tl-desc"><strong>Walk to trailhead.</strong> Identify the start. Note where the bullseye markers begin on the upper route. Check the ranger station bulletin board for current conditions and any trail closures or warnings.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">5:30 PM</div>
+              <div class="tl-desc"><strong>Group dinner.</strong> High-carb, no alcohol. Pasta + protein cooked on camp stoves. Alcohol at altitude accelerates dehydration — save it for Saturday night. Begin hydrating with electrolytes now. Review the route as a group. Establish turnaround protocol: <strong>everyone commits to a hard turnaround at the Keyhole by 1pm Saturday, no exceptions.</strong></div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">7:00 PM</div>
+              <div class="tl-desc"><strong>Pre-pack all summit gear.</strong> Headlamps accessible at the top of packs. Layers laid out for 3am. Water bladders filled (bring 3L minimum per person — there is no water source on the route until the Boulderfield, which requires a filter). Snacks in hip belt pockets. Check microspikes are accessible if Trough snow is still present (confirm current conditions at 14ers.com).</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">8:00 PM</div>
+              <div class="tl-desc"><strong>Lights out.</strong> Non-negotiable. You need 6+ hours before a 3am wake. The campground will be busy with other pre-dawn climbers — earplugs recommended.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SATURDAY -->
+      <div class="day-block">
+        <div class="day-label">Day 2<div class="day-name">Saturday, Aug 15</div></div>
+        <div class="day-content">
+          <div class="day-heading">Summit Day — Keyhole Route</div>
+          <div class="day-body">
+            15 miles, 5,100 feet of gain, four distinct technical sections above the Keyhole. Start in the dark. Summit before noon. Be below tree line before afternoon storms build. This is the mission.
+          </div>
+
+          <div class="caution">
+            <div class="caution-title">Lightning — hard rule</div>
+            <p>Colorado afternoon thunderstorms typically build between noon and 2pm and can develop faster at this elevation. If you are above tree line (~11,400 ft) when storms approach, descend immediately. Hard turnaround: <strong>reach the Keyhole by 1pm or turn around, regardless of summit progress.</strong> The summit is not worth dying for. A no-summit day is still a successful mission.</p>
+          </div>
+
+          <div class="note">
+            <p><strong>Timed-entry permit:</strong> The RMNP timed-entry permit is required to enter the park between 9am–2pm (May 22–Oct 12, 2026). Since your group leaves camp at 3am — well before 9am — <strong>no timed-entry permit is needed for this trip.</strong> You do need a valid park entrance pass ($35/vehicle or America the Beautiful annual pass). The Longs Peak trailhead is accessed via Highway 7, which has its own entrance checkpoint.</p>
+          </div>
+
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-time">2:45 AM</div>
+              <div class="tl-desc"><strong>Wake up.</strong> Headlamps on. Eat breakfast at camp — oatmeal, bars, coffee. Eat fully even if you're not hungry. You are about to hike 7+ miles before you stop.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">3:00 AM</div>
+              <div class="tl-desc"><strong>Leave trailhead.</strong> Headlamps essential — the first miles are through dense forest. Steady, conservative pace. This is a marathon. No racing. The East Longs Peak Trail is well-maintained through the first 4.5 miles to the Boulderfield. Keep the group together.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">5:00–5:30 AM</div>
+              <div class="tl-desc"><strong>Emerge above tree line (~11,400').</strong> The landscape opens dramatically. At this point, check the sky — if you see lightning or hear thunder already, this is your first decision point. Dawn will be breaking. Pace check and first refuel stop.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">5:30–6:00 AM</div>
+              <div class="tl-desc"><strong>Boulderfield (~12,750').</strong> Pit toilet available here — last facilities on the route. Water filter opportunity if needed. Helmets on from here. The Boulderfield is a mile of uneven talus to the Keyhole — go slowly, watch your footing in the dark/dawn light. Sunrise on the Diamond will be directly ahead.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">6:30–7:00 AM</div>
+              <div class="tl-desc"><strong>The Keyhole (~13,150').</strong> The iconic notch in the ridge wall. Pass through and the terrain shifts entirely — you are now on the exposed west face. Views open to the west. Follow the painted orange-and-black bullseye markers from here to the summit. <strong>Do not freelance the route.</strong></div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">7:00–7:30 AM</div>
+              <div class="tl-desc"><strong>The Ledges.</strong> A narrow, airy traverse on the west face with significant exposure below. Hands useful. Space the group 15 feet apart to reduce rockfall risk onto climbers below. Move deliberately, not quickly.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">7:30–8:30 AM</div>
+              <div class="tl-desc"><strong>The Trough.</strong> The hardest physical section — a steep, loose gully gaining 600 feet. Expect scree and talus; snow may remain into mid-July requiring microspikes. Helmet critical here. Stagger the group to avoid knocking rocks onto those below. Ascend on the left side of the gully. This is where legs fail — breathe, keep moving.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">8:30–9:00 AM</div>
+              <div class="tl-desc"><strong>The Narrows.</strong> A cliff-edge traverse on a ledge 1–3 feet wide with a substantial drop to the right. Class 3, genuine exposure. Slow and deliberate. Face outward, use hands on the wall for balance. Do not rush anyone through this section.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">9:00–9:45 AM</div>
+              <div class="tl-desc"><strong>The Homestretch.</strong> The final 300-foot scramble up steep, broken rock to the summit plateau. Hands on rock throughout. Watch for loose debris from climbers above. Nearly there — maintain focus, this is not the time to relax.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">9:45 AM</div>
+              <div class="tl-desc"><strong>Summit — 14,259'.</strong> Longs Peak. Highest point in Rocky Mountain National Park. Group photo. Eat and drink immediately — 15 minutes max on top. Then begin descent. Every minute above tree line after 10am increases lightning exposure.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">10:00 AM</div>
+              <div class="tl-desc"><strong>Begin descent via same route.</strong> Descending the Trough is harder than ascending — face into the rock, three points of contact, move deliberately. <strong>Critical:</strong> near the summit, one gully has killed multiple climbers who mistook it for a shortcut back to camp. Stay strictly on the bullseye-marked route. No shortcuts. Retrace every step of your ascent.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">1:00 PM</div>
+              <div class="tl-desc"><strong>Back through the Keyhole — hard cutoff.</strong> If anyone in the group has not reached the summit by 1pm, they turn around here. Waiting is not an option — storm exposure increases every minute above tree line after this point.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">1:30–2:30 PM</div>
+              <div class="tl-desc"><strong>Back at Boulderfield.</strong> Below serious technical terrain. Legs will be cooked. Refuel, filter water if needed. Stay together — the remaining 4.5 miles back to the trailhead are mellow but long and slow on tired legs.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">4:00–5:00 PM</div>
+              <div class="tl-desc"><strong>Back at trailhead.</strong> The group gathers. Change into dry clothes. Celebrate. Optional: drive 20 minutes to Estes Park for a burger and a beer at Ed's Cantina or Notchtop Bakery. Otherwise return to camp for dinner.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">6:00 PM</div>
+              <div class="tl-desc"><strong>Camp dinner.</strong> Larger meal — steaks or burgers on a grill grate over the fire, sides, more hydration. This is where Charlie Mike bonds. Debrief the day — what worked, what didn't, who surprised themselves, what the group needs before Capitol Peak.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">8:30 PM</div>
+              <div class="tl-desc"><strong>Sleep.</strong> You earned it.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUNDAY -->
+      <div class="day-block">
+        <div class="day-label">Day 3<div class="day-name">Sunday, Aug 16</div></div>
+        <div class="day-content">
+          <div class="day-heading">Buffer Day · Recover · Return</div>
+          <div class="day-body">
+            Sunday is intentionally flexible. Use it for a secondary objective, recovery, or early return. Don't over-program it — the group will be tired.
+          </div>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-time">7:00 AM</div>
+              <div class="tl-desc"><strong>Slow morning.</strong> Sleep in if possible. Camp breakfast. Coffee. The campground opens up for new arrivals — expect early morning activity. Enjoy the views of Longs Peak from camp.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">8:00 AM</div>
+              <div class="tl-desc"><strong>Optional: Chasm Lake hike.</strong> 8 miles round trip, 2,800 ft gain — a stunning alpine lake directly beneath the Diamond (Longs Peak's sheer east face). Class 1–2, beautiful, and a completely different angle on the mountain you just climbed. Perfect for legs that need movement but not suffering.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">10:00 AM</div>
+              <div class="tl-desc"><strong>Break camp.</strong> Leave No Trace. Pack out every piece of trash. Sweep all sites. Longs Peak Campground is heavily used — leave it better than you found it.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">11:00 AM</div>
+              <div class="tl-desc"><strong>Optional Estes Park stop.</strong> Notchtop Bakery &amp; Café for brunch. Estes Park Mountain Shop for post-trip gear browsing. 20 minutes north on CO-7.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">12:00 PM</div>
+              <div class="tl-desc"><strong>Depart for Denver.</strong> ~1 hr 45 min. Everyone home by early afternoon. Mission 01 complete. Start talking about Mission 02.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /itinerary -->
+
+    <!-- Gear + Food -->
+    <div class="two-col">
+      <div>
+        <div class="list-block-title">Gear — per person</div>
+        <ul class="checklist">
+          <li><strong>Headlamp</strong> — fresh batteries, tested the night before. Non-negotiable for 3am start.</li>
+          <li><strong>Layers</strong> — moisture-wicking base layer, insulating mid layer, hardshell (wind and rain). Summit can be 30°F colder than the trailhead.</li>
+          <li><strong>Trekking poles</strong> — essential for descent. Save your knees on 5,100 feet of downhill.</li>
+          <li><strong>Helmet</strong> — required from the Boulderfield up. Rockfall in the Trough is a real hazard from climbers above.</li>
+          <li><strong>Microspikes</strong> — check current conditions at 14ers.com one week before. Trough may hold snow into mid-July.</li>
+          <li><strong>Water — 3L minimum</strong> — plus a filter (Sawyer Squeeze or Katadyn BeFree). Refill opportunity at Boulderfield. Add electrolyte powder (Nuun, Liquid IV).</li>
+          <li><strong>Sunscreen SPF 50+</strong> — UV intensity at altitude is severe. Reapply above tree line.</li>
+          <li><strong>Sunglasses</strong> — polarized, UV protective.</li>
+          <li><strong>Navigation</strong> — download AllTrails or Gaia GPS offline before departing. Cell service unreliable above tree line.</li>
+          <li><strong>First aid kit</strong> — one full group kit minimum. Include blister treatment — 15 miles on rough terrain.</li>
+          <li><strong>Emergency bivy</strong> — one per 3–4 people. Weather can change in minutes at altitude.</li>
+          <li><strong>Boots</strong> — waterproof, ankle support. No trail runners on this route.</li>
+          <li><strong>Gloves + hat</strong> — even in July, summit temps and wind can be severe.</li>
+          <li><strong>Bear canister or food locker</strong> — use the bear boxes at camp. Bears and elk frequent Longs Peak Campground.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="list-block-title">Meal Plan</div>
+        <div class="meal-row">
+          <div class="meal-label">Fri Dinner</div>
+          <div class="meal-desc">Pasta + sausage or chicken. High carb, cooked on camp stoves (1 stove + pot per 4 people). No alcohol. Electrolyte drinks. Eat a full meal — this is your carb load.</div>
+        </div>
+        <div class="meal-row">
+          <div class="meal-label">Sat 2:45am</div>
+          <div class="meal-desc">Instant oatmeal + nut butter, banana, coffee or tea. Eat fully even if appetite is low. Pre-soak oatmeal the night before to save time and fuel.</div>
+        </div>
+        <div class="meal-row">
+          <div class="meal-label">On route</div>
+          <div class="meal-desc">2,000+ calories in hip belt pockets. Trail mix, Clif bars, Gu or Honey Stinger gels, jerky, peanut butter tortilla wraps. Eat every 60–90 min regardless of hunger. Salt intake critical — hyponatremia (low sodium from over-hydration) is a real risk at altitude.</div>
+        </div>
+        <div class="meal-row">
+          <div class="meal-label">Sat Dinner</div>
+          <div class="meal-desc">Camp grill — steaks or burgers, foil-pack potatoes and veggies. Or drive to Estes Park for a sit-down recovery meal (Ed's Cantina, Notchtop). Group votes Friday night.</div>
+        </div>
+        <div class="meal-row">
+          <div class="meal-label">Sun Brunch</div>
+          <div class="meal-desc">Camp eggs + coffee before pack-out. Optional full brunch stop in Estes Park on the way home.</div>
+        </div>
+        <div class="note" style="margin-top:16px;">
+          <p><strong>Water critical:</strong> No potable water at the campground. Bring all water from Denver in jugs for camp use (cooking, cleaning, morning prep). Carry 3L minimum on the mountain and plan to filter at the Boulderfield. 1L per 2 hours of hiking is the minimum — more in heat.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logistics -->
+    <div class="logistics">
+      <div class="logistics-title">Logistics &amp; Booking</div>
+      <div class="logistics-grid">
+        <div class="logistics-item">
+          <div class="logistics-item-label">Campsite</div>
+          <div class="logistics-item-val">
+            Longs Peak Campground, RMNP<br>
+            <strong>First-come, first-served. No reservations.</strong><br>
+            26 tent-only sites, 8 people max per site.<br>
+            Arrive by 2pm Friday to secure your site.<br>
+            $30/site/night via Recreation.gov app.<br>
+            No water on site — bring all your own.<br>
+            Opens early July. Call to confirm: <strong>(970) 586-1206</strong>
+          </div>
+        </div>
+        <div class="logistics-item">
+          <div class="logistics-item-label">Park Entry</div>
+          <div class="logistics-item-val">
+            Park entrance fee required 24/7.<br>
+            $35/vehicle day pass, or America the Beautiful Annual Pass ($80/yr — covers all national parks).<br>
+            <strong>Timed-entry permit NOT required</strong> if entering before 9am (which you will — 3am start).<br>
+            Pay at the Hwy 7 entrance checkpoint or purchase online at <a href="https://www.recreation.gov" target="_blank">recreation.gov</a>
+          </div>
+        </div>
+        <div class="logistics-item">
+          <div class="logistics-item-label">Parking</div>
+          <div class="logistics-item-val">
+            Trailhead lot fills by 2–3am on peak summer weekends.<br>
+            <strong>Non-issue if camping</strong> — campers park at the campground (0.25 mi walk to trailhead).<br>
+            For any day-trippers joining: arrive by midnight or park on the road shoulder.
+          </div>
+        </div>
+        <div class="logistics-item">
+          <div class="logistics-item-label">Carpooling</div>
+          <div class="logistics-item-val">
+            Stage at REI Denver Flagship, 1416 Platte St.<br>
+            8 people = 2 vehicles minimum.<br>
+            Consolidate as much as possible — the campground parking is also limited.<br>
+            Coordinate fuel cost via Venmo split.
+          </div>
+        </div>
+        <div class="logistics-item">
+          <div class="logistics-item-label">Emergency</div>
+          <div class="logistics-item-val">
+            RMNP Dispatch: <strong>(970) 586-1399</strong><br>
+            Longs Peak Ranger Station: <strong>(970) 586-1206</strong><br>
+            Share your trip plan with a contact in Denver before departing.<br>
+            Garmin inReach or SPOT satellite communicator strongly recommended — cell service is absent above tree line.
+          </div>
+        </div>
+        <div class="logistics-item">
+          <div class="logistics-item-label">Best Window</div>
+          <div class="logistics-item-val">
+            Mid-July through mid-September.<br>
+            Late July–August is driest and warmest.<br>
+            Avoid 4th of July and Labor Day weekends — campground fills days in advance and trail is very crowded.<br>
+            Check current Trough snow conditions at <a href="https://www.14ers.com" target="_blank">14ers.com</a> one week before.
+          </div>
+        </div>
+        <div class="logistics-item">
+          <div class="logistics-item-label">Cost Estimate</div>
+          <div class="logistics-item-val">
+            Park entrance: ~$10/person (split per vehicle)<br>
+            Camping: ~$10–15/person/night (2 nights)<br>
+            Food: ~$35–50/person for the weekend<br>
+            Fuel (carpool): ~$10–15/person<br>
+            <strong>Total: ~$70–90/person</strong>
+          </div>
+        </div>
+        <div class="logistics-item">
+          <div class="logistics-item-label">Trip Lead Checklist</div>
+          <div class="logistics-item-val">
+            ☐ Confirm headcount 3 weeks out<br>
+            ☐ Call campground to confirm open dates: (970) 586-1206<br>
+            ☐ Organize carpools + fuel split<br>
+            ☐ Check 14ers.com conditions 7 days before<br>
+            ☐ Check weather at <a href="https://www.mountain-forecast.com" target="_blank">mountain-forecast.com</a><br>
+            ☐ Brief group on lightning protocol + turnaround rule<br>
+            ☐ Confirm everyone has headlamp + microspikes (if needed)
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /mission-card -->
+</div><!-- /section -->
+
+<!-- UPCOMING MISSIONS -->
+<div style="background: var(--charcoal); padding: 80px 0; border-top: 1px solid var(--steel);">
+  <div class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="section-eyebrow">In the pipeline</div>
+    <h2 class="section-title">Future Missions</h2>
+    <p class="section-intro">These objectives are queued and will be built out as Charlie Mike grows. Mission 02 is the natural progression toward Capitol Peak.</p>
+    <div class="upcoming-grid">
+      <div class="upcoming-card">
+        <div class="upcoming-num">Mission 02</div>
+        <div class="upcoming-title">Capitol Peak</div>
+        <div class="upcoming-desc">The hardest standard 14er in Colorado. Class 4, knife-edge ridge, 1,500 ft exposure. Requires Mission 01 as prerequisite. Multi-day approach via Capitol Lake.</div>
+        <span class="upcoming-season">Summer / Fall</span>
+      </div>
+      <div class="upcoming-card">
+        <div class="upcoming-num">Mission 03</div>
+        <div class="upcoming-title">Weminuche Backpack</div>
+        <div class="upcoming-desc">3-day wilderness traverse in Colorado's largest wilderness area. Full packs, high alpine, serious mileage. Wilderness permit required — quota system.</div>
+        <span class="upcoming-season">Summer</span>
+      </div>
+      <div class="upcoming-card">
+        <div class="upcoming-num">Mission 04</div>
+        <div class="upcoming-title">Colorado Trail Bikepacking</div>
+        <div class="upcoming-desc">2-day self-supported bikepacking near Salida. Loaded bikes, singletrack, riverside camping. No permit required. Vehicle shuttle logistics needed.</div>
+        <span class="upcoming-season">Summer / Fall</span>
+      </div>
+      <div class="upcoming-card">
+        <div class="upcoming-num">Mission 05</div>
+        <div class="upcoming-title">10th Mtn Hut Traverse</div>
+        <div class="upcoming-desc">Hut-to-hut route through the Sawatch or Elk ranges. Day packs, bunk beds, communal kitchen. Books out 6 months in advance.</div>
+        <span class="upcoming-season">Fall / Winter</span>
+      </div>
+      <div class="upcoming-card">
+        <div class="upcoming-num">Mission 06</div>
+        <div class="upcoming-title">Browns Canyon Whitewater</div>
+        <div class="upcoming-desc">Class IV–V Arkansas River run with riverside camping. National Monument overnight permit required. Guided or self-supported options available.</div>
+        <span class="upcoming-season">Spring / Summer</span>
+      </div>
+      <div class="upcoming-card">
+        <div class="upcoming-num">Mission 07</div>
+        <div class="upcoming-title">Crested Butte MTB</div>
+        <div class="upcoming-desc">2-day advanced mountain bike weekend. Shuttle-assist trail system, trailhead camping, some of Colorado's best singletrack. Low cost, own gear required.</div>
+        <span class="upcoming-season">Summer / Fall</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>
+    <div class="footer-brand">Charlie <span>Mike</span></div>
+    <div style="font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--slate); margin-top:6px;">Continue the mission</div>
+  </div>
+  <div class="footer-note">
+    Mission Brochure Vol. I · Summer 2026 · Last verified June 2026<br>
+    All routes involve inherent risk. Participants are responsible for their own safety, fitness, and gear. Verify all permit, campsite, and conditions information directly with land managers before departure.
+  </div>
+</div>
+
+</body>
+</html>

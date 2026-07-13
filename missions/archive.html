@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charlie Mike — Mission Vault</title>
+<meta name="description" content="The Charlie Mike mission vault — every misogi we've run or planned, kept on file for future reuse.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0D0D0D;
+    --charcoal:#1C1C1C;
+    --olive:#4B5320;
+    --olive-light:#6B7530;
+    --amber:#C8820A;
+    --danger:#A63228;
+    --fog:#8A9BA8;
+    --border: rgba(138,155,168,0.16);
+    --font-head:'Barlow Condensed', sans-serif;
+    --font-body:'Barlow', sans-serif;
+  }
+  *,*::before,*::after{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--black);
+    color:var(--fog);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:var(--font-head);
+    text-transform:uppercase;
+    color:#F2F1EC;
+    letter-spacing:0.02em;
+    margin:0;
+  }
+  a{ color:var(--olive-light); text-decoration:none; }
+  a:hover{ color:var(--amber); }
+  .container{ max-width:1080px; margin:0 auto; padding:0 24px; }
+  .eyebrow{
+    font-family:var(--font-head);
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    font-size:0.85rem;
+    color:var(--amber);
+    font-weight:600;
+  }
+
+  /* Buttons (mirrors index.html) */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    font-family:var(--font-head);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    font-weight:700;
+    font-size:1rem;
+    padding:14px 30px;
+    border-radius:2px;
+    border:2px solid transparent;
+    cursor:pointer;
+    transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    white-space:nowrap;
+  }
+  .btn-solid{ background:var(--olive); color:#F2F1EC; border-color:var(--olive); }
+  .btn-solid:hover{ background:var(--olive-light); border-color:var(--olive-light); color:#fff; }
+  .btn-small{ padding:10px 22px; font-size:0.85rem; }
+
+  header.archive-header{
+    padding:56px 24px 40px;
+    border-bottom:1px solid var(--border);
+    text-align:center;
+  }
+  .back-link{
+    display:inline-block;
+    margin-bottom:24px;
+    font-family:var(--font-head);
+    text-transform:uppercase;
+    font-size:0.85rem;
+    letter-spacing:0.06em;
+    font-weight:700;
+  }
+  .back-link::before{ content:"← "; }
+  header.archive-header h1{
+    font-size:clamp(2rem, 5vw, 3.2rem);
+    margin:12px 0 16px;
+  }
+  .archive-intro{
+    max-width:640px;
+    margin:0 auto;
+    font-size:1.05rem;
+    color:#DDE3E7;
+  }
+
+  main{ padding:64px 24px 100px; }
+
+  /* Vault gate */
+  .vault-gate{
+    max-width:520px;
+    margin:0 auto 56px;
+    background:var(--charcoal);
+    border:1px solid var(--border);
+    border-left:4px solid var(--amber);
+    border-radius:4px;
+    padding:28px 32px;
+    text-align:center;
+  }
+  .vault-gate-text{
+    font-size:0.92rem;
+    color:#DDE3E7;
+    margin:0 0 18px;
+    line-height:1.55;
+  }
+  .vault-gate-form{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .vault-gate-form input{
+    flex:1 1 200px;
+    background:var(--black);
+    border:1px solid var(--border);
+    border-radius:2px;
+    color:#F2F1EC;
+    padding:12px 14px;
+    font-family:var(--font-body);
+    font-size:0.95rem;
+  }
+  .vault-gate-form input:focus{ outline:none; border-color:var(--amber); }
+  .vault-gate-error{
+    display:none;
+    color:#D98277;
+    font-size:0.85rem;
+    margin:14px 0 0;
+    font-weight:600;
+  }
+  body.vault-unlocked .vault-gate{ display:none; }
+
+  /* View toggle */
+  .view-toolbar{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-bottom:36px;
+  }
+  .view-btn{
+    font-family:var(--font-head);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    font-size:0.85rem;
+    font-weight:700;
+    background:transparent;
+    border:1px solid var(--border);
+    color:var(--fog);
+    padding:9px 20px;
+    border-radius:2px;
+    cursor:pointer;
+    transition:border-color 0.15s ease, color 0.15s ease;
+  }
+  .view-btn:hover{ color:#F2F1EC; }
+  .view-btn.active{ border-color:var(--olive-light); color:var(--olive-light); }
+
+  .mission-tag{
+    font-family:var(--font-head);
+    letter-spacing:0.12em;
+    color:var(--amber);
+    font-size:0.85rem;
+    font-weight:700;
+    text-transform:uppercase;
+  }
+  .badge{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:2px;
+    font-family:var(--font-head);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-size:0.8rem;
+    font-weight:700;
+  }
+  .badge-open{ background:rgba(75,83,32,0.25); color:#9CB86B; border:1px solid var(--olive-light); }
+  .badge-locked{ background:rgba(166,50,40,0.15); color:#D98277; border:1px solid var(--danger); }
+  .badge-planning{ background:rgba(200,130,10,0.12); color:var(--amber); border:1px solid var(--amber); }
+  .badge-complete{ background:rgba(138,155,168,0.12); color:#C3CDD5; border:1px solid var(--fog); }
+
+  .archive-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:24px;
+  }
+  .archive-card{
+    background:var(--charcoal);
+    border:1px solid var(--border);
+    border-left:4px solid var(--olive);
+    border-radius:4px;
+    padding:28px 32px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .archive-card h3{ font-size:1.6rem; }
+  .archive-card .loc{ font-size:0.9rem; color:var(--fog); }
+  .archive-card .desc{ font-size:0.92rem; color:#DDE3E7; line-height:1.55; }
+  .archive-card-foot{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:8px;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .brief-link{
+    font-family:var(--font-head);
+    text-transform:uppercase;
+    font-weight:700;
+    letter-spacing:0.05em;
+    font-size:0.9rem;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .brief-link::after{ content:"→"; transition:transform 0.15s ease; }
+  .brief-link:hover::after{ transform:translateX(4px); }
+  .no-brief{
+    font-family:var(--font-head);
+    text-transform:uppercase;
+    font-size:0.85rem;
+    letter-spacing:0.05em;
+    color:var(--fog);
+    font-weight:600;
+  }
+
+  /* Locked-card gating */
+  .locked-text{ display:none; }
+  body.vault-unlocked .locked-text{ display:block; }
+  .locked-action{ display:none; }
+  body.vault-unlocked .locked-action{ display:inline-flex; }
+  .lock-note{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:var(--font-head);
+    text-transform:uppercase;
+    font-size:0.8rem;
+    letter-spacing:0.05em;
+    color:var(--fog);
+    font-weight:600;
+  }
+  body.vault-unlocked .lock-note{ display:none; }
+
+  .hook{
+    margin:0;
+    font-size:0.95rem;
+    font-weight:600;
+    color:var(--amber);
+    line-height:1.45;
+  }
+
+  /* List view */
+  .archive-grid.view-list{
+    grid-template-columns:1fr;
+    gap:0;
+    border:1px solid var(--border);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .view-list .archive-card{
+    display:grid;
+    grid-template-columns:140px 1fr auto;
+    align-items:center;
+    gap:20px;
+    padding:16px 24px;
+    border-radius:0;
+    border:none;
+    border-left:4px solid var(--olive);
+    border-bottom:1px solid var(--border);
+  }
+  .view-list .archive-card:last-child{ border-bottom:none; }
+  .view-list .archive-card h3{ font-size:1.15rem; }
+  .view-list .loc,
+  .view-list .desc,
+  .view-list .hook{ display:none !important; }
+  .view-list .archive-card-foot{ margin-top:0; flex-wrap:nowrap; }
+
+  footer{
+    padding:40px 24px;
+    text-align:center;
+    font-size:0.85rem;
+    color:#5F6F7A;
+    border-top:1px solid var(--border);
+  }
+
+  @media (max-width:760px){
+    .archive-grid{ grid-template-columns:1fr; }
+    .archive-card{ padding:24px 22px; }
+  }
+  @media (max-width:600px){
+    .view-list .archive-card{ grid-template-columns:1fr; row-gap:10px; }
+    .vault-gate{ padding:24px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="archive-header">
+  <div class="container">
+    <a href="../index.html" class="back-link">Back to Charlie Mike</a>
+    <span class="eyebrow">The Vault</span>
+    <h1>Mission Vault</h1>
+    <p class="archive-intro">Every misogi we've run, are running, or are planning — kept on file. Mission 01 and Mission 02 are open to everyone. Everything else is members-only.</p>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <div class="vault-gate" id="vaultGate">
+      <p class="vault-gate-text">The current and next missions are public. Past and future missions beyond that are archived for members only — enter the password to unlock the rest of the vault.</p>
+      <form class="vault-gate-form" id="vaultGateForm">
+        <input type="password" id="vaultGateInput" placeholder="Vault password" autocomplete="off" required>
+        <button type="submit" class="btn btn-solid btn-small">Unlock</button>
+      </form>
+      <p class="vault-gate-error" id="vaultGateError">Incorrect password. Try again.</p>
+    </div>
+
+    <div class="view-toolbar">
+      <button class="view-btn active" id="viewGridBtn" type="button">Thumbnail view</button>
+      <button class="view-btn" id="viewListBtn" type="button">List view</button>
+    </div>
+
+    <div class="archive-grid" id="archiveGrid">
+
+      <div class="archive-card">
+        <span class="mission-tag">Mission 01</span>
+        <h3>Longs Peak</h3>
+        <p class="hook">3am alarm, 14,259 feet, bragging rights for life.</p>
+        <span class="loc">Keyhole Route · Rocky Mountain National Park · August 14–16, 2026</span>
+        <p class="desc">15 miles, 5,100 ft of gain, Class 3 exposure above the Keyhole. The mission that started it all.</p>
+        <div class="archive-card-foot">
+          <span class="badge badge-open">Registration open</span>
+          <a href="longs-peak.html" class="brief-link">View mission briefing</a>
+        </div>
+      </div>
+
+      <div class="archive-card">
+        <span class="mission-tag">Mission 02</span>
+        <h3>Capitol Peak</h3>
+        <p class="hook">Colorado's meanest 14er. Knife-edge ridge, no room for error.</p>
+        <span class="loc">Elk Mountains, Colorado</span>
+        <p class="desc">The hardest standard 14er in Colorado. Class 4, knife-edge ridge, serious exposure. Requires Mission 01 as prerequisite.</p>
+        <div class="archive-card-foot">
+          <span class="badge badge-locked">Locked</span>
+          <span class="no-brief">Briefing not yet published</span>
+        </div>
+      </div>
+
+      <div class="archive-card">
+        <span class="mission-tag">Mission 03</span>
+        <h3>Weminuche Wilderness</h3>
+        <p class="hook">Three days, full packs, Colorado's largest wilderness. Earn the quiet.</p>
+        <span class="loc locked-text">San Juan Mountains, Colorado</span>
+        <p class="desc locked-text">3-day wilderness traverse in Colorado's largest wilderness area. Full packs, high alpine, serious mileage.</p>
+        <div class="archive-card-foot">
+          <span class="badge badge-planning">Planning</span>
+          <span class="no-brief locked-action">Briefing not yet published</span>
+          <span class="lock-note">&#128274; Members only</span>
+        </div>
+      </div>
+
+      <div class="archive-card">
+        <span class="mission-tag">Mission 04</span>
+        <h3>CT Bikepacking</h3>
+        <p class="hook">Loaded bikes, singletrack, a river to fall asleep next to. Self-supported, no shortcuts.</p>
+        <span class="loc locked-text">Colorado Trail</span>
+        <p class="desc locked-text">2-day self-supported bikepacking near Salida. Loaded bikes, singletrack, riverside camping.</p>
+        <div class="archive-card-foot">
+          <span class="badge badge-planning">Planning</span>
+          <span class="no-brief locked-action">Briefing not yet published</span>
+          <span class="lock-note">&#128274; Members only</span>
+        </div>
+      </div>
+
+      <div class="archive-card">
+        <span class="mission-tag">Pipeline · Unnumbered</span>
+        <h3>Mount Lindsey</h3>
+        <p class="hook">Private land, no ranger station, no crowd. Access most climbers can't get.</p>
+        <span class="loc locked-text">Northwest Ridge · Sangre de Cristo Range, Colorado</span>
+        <p class="desc locked-text">Class 3 ridge scramble on the Sierra Blanca Massif. Rough 4WD approach, no ranger infrastructure — access crosses private ranch land and requires a signed landowner waiver from every participant.</p>
+        <div class="archive-card-foot">
+          <span class="badge badge-planning">Planning</span>
+          <a href="mt-lindsey.html" class="brief-link locked-action">View mission briefing</a>
+          <span class="lock-note">&#128274; Members only</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  &copy; 2026 Charlie Mike. Denver, Colorado.
+</footer>
+
+<script>
+  (function(){
+    // NOTE: this is a soft, client-side gate only — the password below is visible
+    // to anyone who views page source. It keeps casual visitors out, not a
+    // determined one. Swap VAULT_PASSWORD for your real shared password.
+    var VAULT_PASSWORD = 'CHANGE_ME';
+    var STORAGE_KEY = 'cm_vault_unlocked';
+    var body = document.body;
+
+    function unlock(){
+      body.classList.add('vault-unlocked');
+    }
+
+    if (sessionStorage.getItem(STORAGE_KEY) === '1') {
+      unlock();
+    }
+
+    var form = document.getElementById('vaultGateForm');
+    var input = document.getElementById('vaultGateInput');
+    var error = document.getElementById('vaultGateError');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (input.value === VAULT_PASSWORD) {
+        sessionStorage.setItem(STORAGE_KEY, '1');
+        unlock();
+        error.style.display = 'none';
+      } else {
+        error.style.display = 'block';
+        input.value = '';
+        input.focus();
+      }
+    });
+
+    var gridBtn = document.getElementById('viewGridBtn');
+    var listBtn = document.getElementById('viewListBtn');
+    var grid = document.getElementById('archiveGrid');
+
+    function setView(view){
+      if (view === 'list') {
+        grid.classList.add('view-list');
+        listBtn.classList.add('active');
+        gridBtn.classList.remove('active');
+      } else {
+        grid.classList.remove('view-list');
+        gridBtn.classList.add('active');
+        listBtn.classList.remove('active');
+      }
+    }
+
+    gridBtn.addEventListener('click', function(){ setView('grid'); });
+    listBtn.addEventListener('click', function(){ setView('list'); });
+  })();
+</script>
+
+</body>
+</html>

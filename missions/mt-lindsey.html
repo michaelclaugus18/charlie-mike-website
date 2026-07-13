@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charlie Mike — Mission Brief: Mount Lindsey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0D0D0D;
+    --charcoal:#1C1C1C;
+    --charcoal-2:#242424;
+    --olive:#4B5320;
+    --olive-light:#6b7530;
+    --amber:#C8820A;
+    --red:#A63228;
+    --fog:#8A9BA8;
+    --white:#F2F0EB;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--black);
+    color:var(--white);
+    font-family:'Barlow', sans-serif;
+    font-weight:300;
+    line-height:1.55;
+  }
+  .page{
+    max-width:900px;
+    margin:0 auto;
+    padding:0 0 80px;
+  }
+  h1,h2,h3,h4,.label{
+    font-family:'Barlow Condensed', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+  a{color:var(--amber);}
+
+  /* ===== COVER ===== */
+  .cover{
+    background:
+      linear-gradient(180deg, rgba(13,13,13,0.55) 0%, rgba(13,13,13,0.85) 55%, var(--black) 100%),
+      radial-gradient(ellipse at top, #262b1a 0%, var(--black) 70%);
+    padding:70px 48px 56px;
+    border-bottom:4px solid var(--olive);
+    position:relative;
+  }
+  .brandbar{
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'Barlow Condensed'; text-transform:uppercase;
+    letter-spacing:0.18em; font-size:13px; color:var(--fog);
+    margin-bottom:56px;
+  }
+  .brandbar .mark{color:var(--olive-light); font-weight:800; letter-spacing:0.1em;}
+  .brandbar .mark span{color:var(--amber);}
+  .cover .kicker{
+    color:var(--amber); font-size:15px; font-weight:700; letter-spacing:0.25em;
+    margin-bottom:14px;
+  }
+  .cover h1{
+    font-size:76px; font-weight:900; line-height:0.95; color:var(--white);
+    margin-bottom:6px;
+  }
+  .cover h1 em{font-style:normal; color:var(--olive-light);}
+  .cover .subhead{
+    font-family:'Barlow Condensed'; font-size:24px; font-weight:500;
+    color:var(--fog); letter-spacing:0.06em; margin-bottom:36px;
+  }
+  .statgrid{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:1px;
+    background:rgba(138,155,168,0.25); border:1px solid rgba(138,155,168,0.25);
+    margin-top:10px;
+  }
+  .statgrid div{
+    background:var(--black); padding:16px 12px; text-align:center;
+  }
+  .statgrid .num{
+    font-family:'Barlow Condensed'; font-size:28px; font-weight:800; color:var(--amber);
+    display:block;
+  }
+  .statgrid .lbl{
+    font-size:11px; letter-spacing:0.1em; color:var(--fog); text-transform:uppercase;
+  }
+
+  /* ===== SECTIONS ===== */
+  section{padding:48px 48px 8px;}
+  .section-title{
+    display:flex; align-items:center; gap:14px;
+    font-size:15px; font-weight:800; letter-spacing:0.2em; color:var(--olive-light);
+    margin-bottom:22px;
+  }
+  .section-title::before{
+    content:""; width:28px; height:3px; background:var(--amber); display:block;
+  }
+  h2.big{
+    font-size:36px; font-weight:800; color:var(--white); margin-bottom:18px;
+  }
+  p{color:#D8D6D0; margin-bottom:14px; font-size:16px;}
+  p.lead{font-size:18px; color:var(--white); font-weight:400;}
+
+  /* ===== WAIVER CALLOUT ===== */
+  .callout{
+    border:2px solid var(--red);
+    background:linear-gradient(180deg, rgba(166,50,40,0.12), rgba(166,50,40,0.04));
+    padding:24px 26px;
+    margin:8px 0 32px;
+  }
+  .callout .tag{
+    display:inline-block; background:var(--red); color:var(--white);
+    font-family:'Barlow Condensed'; font-weight:800; font-size:13px;
+    letter-spacing:0.14em; padding:4px 10px; margin-bottom:12px;
+  }
+  .callout p{color:var(--white); margin-bottom:10px;}
+  .callout p:last-child{margin-bottom:0;}
+  .callout a{color:var(--amber); font-weight:600;}
+
+  /* ===== TIMELINE ===== */
+  .day-block{
+    border-left:3px solid var(--olive);
+    padding-left:24px;
+    margin-bottom:36px;
+    position:relative;
+  }
+  .day-head{
+    font-family:'Barlow Condensed'; font-size:30px; font-weight:800; color:var(--white);
+    margin-bottom:2px;
+  }
+  .day-sub{color:var(--amber); font-size:14px; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:18px; font-weight:600;}
+  .tl-item{
+    display:grid; grid-template-columns:96px 1fr; gap:16px;
+    padding:12px 0; border-bottom:1px solid rgba(138,155,168,0.15);
+  }
+  .tl-item:last-child{border-bottom:none;}
+  .tl-time{
+    font-family:'Barlow Condensed'; font-weight:700; color:var(--fog); font-size:16px;
+  }
+  .tl-text b{color:var(--white); font-weight:600;}
+  .tl-text{color:#C7C5BF; font-size:15px;}
+  .tl-text .tag-danger{color:var(--red); font-weight:700;}
+  .tl-text .tag-amber{color:var(--amber); font-weight:700;}
+
+  /* ===== ROUTE COMPARISON ===== */
+  table{width:100%; border-collapse:collapse; margin:10px 0 30px;}
+  th,td{text-align:left; padding:12px 14px; font-size:14.5px; border-bottom:1px solid rgba(138,155,168,0.2);}
+  th{
+    font-family:'Barlow Condensed'; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--amber); font-size:13px; border-bottom:2px solid var(--olive);
+  }
+  td{color:#D8D6D0;}
+  td.hl{color:var(--white); font-weight:600;}
+
+  /* ===== GEAR / MEAL GRID ===== */
+  .twocol{display:grid; grid-template-columns:1fr 1fr; gap:40px;}
+  .cardlist{list-style:none;}
+  .cardlist li{
+    padding:9px 0 9px 26px; border-bottom:1px solid rgba(138,155,168,0.12);
+    color:#D8D6D0; font-size:15px; position:relative;
+  }
+  .cardlist li::before{
+    content:"—"; position:absolute; left:0; color:var(--olive-light); font-weight:700;
+  }
+  .cardlist.required li::before{content:"■"; color:var(--red); font-size:10px; top:13px;}
+  h3.mini{
+    font-family:'Barlow Condensed'; font-size:18px; font-weight:700; color:var(--white);
+    letter-spacing:0.04em; margin-bottom:10px; margin-top:26px;
+  }
+  h3.mini:first-child{margin-top:0;}
+
+  /* ===== LOGISTICS GRID ===== */
+  .logi-grid{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(138,155,168,0.2); border:1px solid rgba(138,155,168,0.2); margin-bottom:10px;}
+  .logi-cell{background:var(--charcoal); padding:20px 22px;}
+  .logi-cell h4{font-size:13px; color:var(--amber); letter-spacing:0.1em; margin-bottom:8px; font-weight:700;}
+  .logi-cell p{font-size:14.5px; margin-bottom:0; color:#D8D6D0;}
+
+  /* ===== FOOTER ===== */
+  footer{
+    margin-top:40px; padding:34px 48px; border-top:1px solid rgba(138,155,168,0.2);
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:12px; color:var(--fog); letter-spacing:0.04em;
+  }
+  .badge-strip{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px;}
+  .badge{
+    font-family:'Barlow Condensed'; font-weight:700; font-size:12px; letter-spacing:0.08em;
+    padding:5px 10px; border:1px solid var(--olive-light); color:var(--olive-light);
+  }
+  .badge.red{border-color:var(--red); color:var(--red);}
+  .badge.amber{border-color:var(--amber); color:var(--amber);}
+
+  @media (max-width:640px){
+    .statgrid{grid-template-columns:repeat(2,1fr);}
+    .twocol, .logi-grid{grid-template-columns:1fr;}
+    .cover h1{font-size:48px;}
+    section{padding:36px 22px 8px;}
+    .cover{padding:44px 22px 40px;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== COVER ===== -->
+  <div class="cover">
+    <div class="brandbar">
+      <div class="mark">CHARLIE <span>MIKE</span></div>
+      <div>DENVER, CO · EST. 2026</div>
+    </div>
+    <div class="kicker">MISSION BRIEF · UNNUMBERED / PIPELINE TBD</div>
+    <h1>MOUNT<br><em>LINDSEY</em></h1>
+    <div class="subhead">Northwest Ridge · Sangre de Cristo Range, Colorado</div>
+    <div class="badge-strip" style="margin-bottom:22px;">
+      <span class="badge red">LANDOWNER WAIVER REQUIRED</span>
+      <span class="badge amber">CLASS 3 · HIGH EXPOSURE</span>
+      <span class="badge">4WD TRAILHEAD ACCESS</span>
+    </div>
+    <div class="statgrid">
+      <div><span class="num">14,055'</span><span class="lbl">Summit Elev.</span></div>
+      <div><span class="num">3,500'</span><span class="lbl">Total Gain</span></div>
+      <div><span class="num">8.25 mi</span><span class="lbl">RT Distance</span></div>
+      <div><span class="num">Class 3</span><span class="lbl">Difficulty</span></div>
+      <div><span class="num">Fri–Sun</span><span class="lbl">Duration</span></div>
+    </div>
+  </div>
+
+  <!-- ===== OVERVIEW ===== -->
+  <section>
+    <div class="section-title">OBJECTIVE OVERVIEW</div>
+    <p class="lead">Mount Lindsey is one of the more serious standard-difficulty 14ers in Colorado — a Class 3 ridge scramble on the Sierra Blanca Massif, guarded by a rough 4WD approach and a working ranch that controls access to the mountain itself.</p>
+    <p>The peak sits in the southern Sangre de Cristo Range, part of the same massif as Blanca Peak, Ellingwood Point, and Little Bear. Unlike Longs Peak, there's no marked trail system or ranger infrastructure here — this is remote, exposed, rockfall-prone terrain on land that is partially private property. That combination makes Lindsey a deliberate step up in seriousness from Mission 01, and a solid rung on the ladder toward Capitol.</p>
+    <p>The standard line to the summit is the <b style="color:var(--white)">Northwest Ridge</b> — a longer but far more stable Class 3 scramble with a short, well-defined crux. The historic standard, the <b style="color:var(--white)">Northwest Gully</b>, is faster but becomes a loose, rockfall-prone slog once snow melts out. Given late-summer timing and group size, this brief is built around ascending the ridge.</p>
+
+    <div class="callout">
+      <span class="tag">CRITICAL · READ BEFORE BOOKING</span>
+      <p><b>Mount Lindsey's northwest ridge and summit sit on private ranch land (Trinchera Blanca Ranch).</b> As of the 2025 access update, the standard routes are open to climbers — but only with a signed landowner waiver. This is non-negotiable and applies to every participant, including minors.</p>
+      <p>Every member of the trip roster must complete the waiver individually before departure: <a href="https://www.mountlindseywaiver.com" target="_blank">mountlindseywaiver.com</a></p>
+      <p>Access is granted strictly for hiking the designated route from the trailhead to the summit and back. No off-route travel, no camping on ranch land beyond the designated approach, no exceptions.</p>
+    </div>
+  </section>
+
+  <!-- ===== FRIDAY ===== -->
+  <section>
+    <div class="section-title">MISSION TIMELINE</div>
+    <div class="day-block">
+      <div class="day-head">FRIDAY — STAGE & INFIL</div>
+      <div class="day-sub">Denver to Lily Lake Trailhead</div>
+      <div class="tl-item"><div class="tl-time">09:00</div><div class="tl-text"><b>Muster in Denver.</b> Confirm 4WD/high-clearance vehicle count — the final 2 miles into the trailhead require it. Carpool assignments locked before departure.</div></div>
+      <div class="tl-item"><div class="tl-time">09:30</div><div class="tl-text"><b>Roll out.</b> Denver → Walsenburg → Gardner, CO (~3 hrs). Fuel and last real cell signal in Walsenburg — <span class="tag-amber">top off here.</span></div></div>
+      <div class="tl-item"><div class="tl-time">12:30</div><div class="tl-text"><b>Turn onto County Road 550</b> from CO-69 just west of Gardner. Begin the 22-mile approach road. Pavement ends at mile 7.</div></div>
+      <div class="tl-item"><div class="tl-time">13:30</div><div class="tl-text"><b>Stay left</b> onto Forest Road 580 at mile 11.8, then left again at mile 15.7 (Singing River Ranch entrance). Road narrows — still 2WD-passable with clearance to this point.</div></div>
+      <div class="tl-item"><div class="tl-time">14:15</div><div class="tl-text">Pass the Aspen River Ranch entrance (mile 16.7). At ~mile 20, reach the 2016 landslide reroute. <span class="tag-danger">4WD required beyond this point</span> — steep, rough final 2 miles to Lily Lake TH.</div></div>
+      <div class="tl-item"><div class="tl-time">14:45</div><div class="tl-text"><b>Arrive Lily Lake Trailhead</b> (~10,700'). Set up dispersed camp along the final approach road — spots exist but are informal and limited; earlier arrival means better site selection.</div></div>
+      <div class="tl-item"><div class="tl-time">17:30</div><div class="tl-text">Group dinner, gear shakedown, route brief. Confirm everyone's waiver is complete — <span class="tag-danger">no waiver, no summit attempt.</span></div></div>
+      <div class="tl-item"><div class="tl-time">19:30</div><div class="tl-text">Final weather check via inReach/satellite device — <span class="tag-amber">no cell service at the trailhead or on the mountain.</span></div></div>
+      <div class="tl-item"><div class="tl-time">20:30</div><div class="tl-text">Lights out. Alpine start ahead.</div></div>
+    </div>
+
+    <!-- ===== SATURDAY ===== -->
+    <div class="day-block">
+      <div class="day-head">SATURDAY — SUMMIT PUSH</div>
+      <div class="day-sub">Northwest Ridge Route · ~13 miles round trip incl. approach</div>
+      <div class="tl-item"><div class="tl-time">03:30</div><div class="tl-text"><b>Wake, eat, gear up.</b> Headlamps, helmets on the pack (worn once above treeline). Rope up on the roster — no solo travel.</div></div>
+      <div class="tl-item"><div class="tl-time">04:15</div><div class="tl-text"><b>Depart trailhead.</b> South on the Lily Lake trail through trees into a large meadow, then straight at the trail junction (~1 mi) toward the unmarked route — do not veer right with the marked Lily Lake trail.</div></div>
+      <div class="tl-item"><div class="tl-time">05:00</div><div class="tl-text">Cross the Huerfano River, then climb through dense forest to a boulder field near 10,800'.</div></div>
+      <div class="tl-item"><div class="tl-time">06:00</div><div class="tl-text">Climb the gully/stream drainage to ~11,600', cross the stream, continue to treeline (~12,000'). <span class="tag-amber">Last reliable water ~11,500' — top off here.</span></div></div>
+      <div class="tl-item"><div class="tl-time">07:15</div><div class="tl-text">Cross the high basin, ascend to the 13,000' crest, navigate the boulder field to the <b>13,150' saddle</b> between Iron Nipple and Mt. Lindsey. Sunrise views of Blanca and Ellingwood to the southwest.</div></div>
+      <div class="tl-item"><div class="tl-time">08:00</div><div class="tl-text"><b>Route decision point.</b> Weather and group check. Proceed up the Northwest Ridge (recommended — see comparison below).</div></div>
+      <div class="tl-item"><div class="tl-time">08:45</div><div class="tl-text">Ridge scramble begins — Class 3 terrain builds gradually. <span class="tag-danger">Rockfall zone: the gully route runs directly below the ridge. Stay tight as a group, call out any dislodged rock immediately.</span></div></div>
+      <div class="tl-item"><div class="tl-time">09:30</div><div class="tl-text"><b>Crux wall.</b> Bypass left for exposed Class 3, or take the direct line left of the vertical crack for brief Class 4. Group leads decide the line based on the day's comfort level and conditions.</div></div>
+      <div class="tl-item"><div class="tl-time">10:15</div><div class="tl-text">Regain the ridge above the crux, continue to the false summit ("Northwest Lindsey").</div></div>
+      <div class="tl-item"><div class="tl-time">10:45</div><div class="tl-text"><b>SUMMIT.</b> 14,055'. Sierra Blanca massif, Huerfano Valley, and the Sangres in every direction. <span class="tag-danger">20-minute hard cap</span> — weather windows close fast at this elevation.</div></div>
+      <div class="tl-item"><div class="tl-time">11:05</div><div class="tl-text"><b>Begin descent</b> via the same ridge line (recommended) to minimize rockfall exposure to parties below.</div></div>
+      <div class="tl-item"><div class="tl-time">13:30</div><div class="tl-text">Back at the 13,150' saddle. Regroup, refuel, hydrate.</div></div>
+      <div class="tl-item"><div class="tl-time">15:30</div><div class="tl-text">Clear treeline, back through the boulder field and drainage.</div></div>
+      <div class="tl-item"><div class="tl-time">17:00</div><div class="tl-text"><b>Back at camp.</b> Approx. 12.5–13 hour day car-to-car. Food, recovery, celebrate.</div></div>
+    </div>
+
+    <!-- ===== SUNDAY ===== -->
+    <div class="day-block">
+      <div class="day-head">SUNDAY — RECOVERY & EXFIL</div>
+      <div class="day-sub">Breakdown and return to Denver</div>
+      <div class="tl-item"><div class="tl-time">07:30</div><div class="tl-text">Wake, breakfast, pack out. Leave No Trace — this is a working ranch and public forest access hangs on how we treat it.</div></div>
+      <div class="tl-item"><div class="tl-time">09:00</div><div class="tl-text">Depart camp. 4WD section first, then the long dirt road out to CR 550.</div></div>
+      <div class="tl-item"><div class="tl-time">11:30</div><div class="tl-text">Reach pavement at Gardner/CO-69. Optional stop in Walsenburg for food and real cell signal.</div></div>
+      <div class="tl-item"><div class="tl-time">14:00</div><div class="tl-text"><b>Arrive Denver.</b> Mission complete.</div></div>
+    </div>
+  </section>
+
+  <!-- ===== ROUTE COMPARISON ===== -->
+  <section>
+    <div class="section-title">ROUTE OPTIONS</div>
+    <p>Both routes share the same approach to the 13,150' saddle. From there, the mountain offers two very different finishes.</p>
+    <table>
+      <tr><th>Northwest Ridge (recommended)</th><th>Northwest Gully (historic standard)</th></tr>
+      <tr><td class="hl">Class 3, brief Class 4 option at crux</td><td class="hl">Class 2+/3, no technical crux</td></tr>
+      <tr><td>Solid rock, far more stable footing</td><td>Loose, unstable once snow has melted out</td></tr>
+      <tr><td>High exposure throughout upper ridge</td><td>Lower exposure, but active rockfall channel</td></tr>
+      <tr><td>Longer, more sustained scrambling</td><td>Shorter but historically the site of the most incidents on the peak</td></tr>
+      <tr><td>Preferred in dry, snow-free conditions (typical July–Sept)</td><td>Better option only with firm, consolidated snow in the gully</td></tr>
+    </table>
+    <p>Given typical late-summer conditions and Charlie Mike's advanced-fitness roster, the Northwest Ridge is the call both up and down — it trades a harder scramble for dramatically better rock quality and lower objective hazard. Trip lead reserves the right to reroute based on current condition reports checked in the week before departure.</p>
+  </section>
+
+  <!-- ===== GEAR & MEALS ===== -->
+  <section>
+    <div class="section-title">LOADOUT</div>
+    <div class="twocol">
+      <div>
+        <h3 class="mini">Required — Non-Negotiable</h3>
+        <ul class="cardlist required">
+          <li><b style="color:var(--white)">Climbing helmet</b> — mandatory above treeline, rockfall risk is real and documented</li>
+          <li>Sturdy boots with aggressive tread — no trail runners on this route</li>
+          <li>Signed landowner waiver (printed or on phone, screenshot backup)</li>
+          <li>Headlamp + spare batteries</li>
+          <li>3+ liters water capacity, plus purification (last water at 11,500')</li>
+          <li>Satellite communicator (inReach/Zoleo) — zero cell service on the mountain</li>
+        </ul>
+        <h3 class="mini">Clothing</h3>
+        <ul class="cardlist">
+          <li>Base layer + insulating mid-layer</li>
+          <li>Waterproof/windproof shell</li>
+          <li>Gloves — even in August, ridge wind is brutal</li>
+          <li>Sun protection: hat, sunglasses, high-SPF sunscreen</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="mini">4WD / High-Clearance Vehicle</h3>
+        <ul class="cardlist">
+          <li>Mandatory for the final 2 miles to Lily Lake TH</li>
+          <li>Confirm vehicle count during Friday muster — no exceptions on trailhead access</li>
+        </ul>
+        <h3 class="mini">Trip Gear</h3>
+        <ul class="cardlist">
+          <li>Trekking poles</li>
+          <li>First aid kit (trip lead carries primary)</li>
+          <li>Emergency bivy / space blanket</li>
+          <li>30–40L pack</li>
+          <li>Sunscreen, lip balm, blister kit</li>
+          <li>Camera — Blanca, Ellingwood, and the Huerfano Valley are spectacular from the ridge</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">FUEL PLAN</div>
+    <div class="twocol">
+      <div>
+        <h3 class="mini">Friday Dinner</h3>
+        <p>High-carb camp meal — pasta or rehydrated backpacker meal. Hydrate aggressively; altitude at basecamp alone is over 10,000'.</p>
+        <h3 class="mini">Saturday Pre-Dawn</h3>
+        <p>Oatmeal + nut butter, or breakfast burrito. Eat by 03:45 — no cooking once moving.</p>
+      </div>
+      <div>
+        <h3 class="mini">Saturday On-Route</h3>
+        <p>Bars, gels, trail mix on a steady clock — every 45–60 minutes on the move. This is a 12–13 hour day; bonking on the ridge is not an option.</p>
+        <h3 class="mini">Sunday Recovery</h3>
+        <p>Big breakfast before breakdown — eggs, coffee, whatever's left in the cooler.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LOGISTICS ===== -->
+  <section>
+    <div class="section-title">LOGISTICS & BOOKING</div>
+    <div class="logi-grid">
+      <div class="logi-cell">
+        <h4>LANDOWNER WAIVER</h4>
+        <p>Required for every participant, no exceptions. Complete at mountlindseywaiver.com before departure. Print or screenshot confirmation.</p>
+      </div>
+      <div class="logi-cell">
+        <h4>CAMPING</h4>
+        <p>Informal dispersed camping along the final miles of the approach road. Not a managed campground — no reservations, no facilities, no potable water. Pack out everything.</p>
+      </div>
+      <div class="logi-cell">
+        <h4>TRAILHEAD ACCESS</h4>
+        <p>Huerfano/Lily Lake TH, San Isabel National Forest. 22+ miles of dirt/rough road from Gardner, CO. Final 2 miles require 4WD high-clearance.</p>
+      </div>
+      <div class="logi-cell">
+        <h4>CELL / COMMS</h4>
+        <p>No reliable cell service from Gardner onward. Satellite communicator required for the group. Last signal: Walsenburg.</p>
+      </div>
+      <div class="logi-cell">
+        <h4>EMERGENCY CONTACTS</h4>
+        <p>Huerfano County Sheriff: 719-738-1600<br>Costilla County Sheriff: 719-672-3302</p>
+      </div>
+      <div class="logi-cell">
+        <h4>ESTIMATED COST</h4>
+        <p>~$25–35/person — fuel share (4WD vehicles, longer drive than Mission 01), no permit or camping fees. Waiver is free but mandatory.</p>
+      </div>
+    </div>
+    <p style="margin-top:18px;">Best window: <b style="color:var(--white)">mid-July through mid-September</b>, once seasonal snow clears the gully and ridge. Condition reports should be checked on 14ers.com in the week before departure — snow lingering into July changes the route calculus significantly.</p>
+  </section>
+
+  <!-- ===== SAFETY ===== -->
+  <section>
+    <div class="section-title">SAFETY PROTOCOL</div>
+    <ul class="cardlist required">
+      <li><b style="color:var(--white)">Lightning turnaround:</b> off the ridge by 12:00 regardless of summit status. Afternoon storms build fast over the Sangres.</li>
+      <li><b style="color:var(--white)">Rockfall discipline:</b> tight spacing on the ridge and gully sections, helmets on, call out any loose rock immediately.</li>
+      <li><b style="color:var(--white)">No solo travel</b> above the 13,150' saddle — this is remote, unpatrolled terrain with no rescue infrastructure nearby.</li>
+      <li><b style="color:var(--white)">Respect the land:</b> stay on the designated route at all times. This access exists because the landowner allows it — off-route travel jeopardizes it for everyone.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <div>
+      CHARLIE MIKE — CONTINUE THE MISSION<br>
+      Denver, CO · Summer 2026<br>
+      All routes involve inherent risk. Participants are responsible for their own safety, fitness, and gear. Verify current conditions and complete the landowner waiver before departure.
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
