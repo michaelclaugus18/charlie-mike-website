@@ -99,6 +99,13 @@
   .badge-permit { color: var(--amber); border-color: var(--amber); }
   .badge-class { color: var(--fog); border-color: var(--slate); }
 
+  /* ── RSVP ── */
+  .rsvp-bar { background: rgba(75,83,32,0.14); border-bottom: 1px solid var(--steel); padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .rsvp-bar p { font-size: 13px; color: var(--fog); font-weight: 300; margin: 0; }
+  .rsvp-bar p strong { color: var(--snow); font-weight: 500; }
+  .rsvp-btn { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; background: var(--od); color: var(--white); padding: 10px 20px; border-radius: 2px; text-decoration: none; white-space: nowrap; }
+  .rsvp-btn:hover { background: var(--od-light); }
+
   /* ── STATS ── */
   .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); border-bottom: 1px solid var(--steel); }
   .stat-cell { padding: 22px 28px; border-right: 1px solid var(--steel); }
@@ -205,19 +212,19 @@
   </div>
 </div>
 
-<!-- MISSION 01 -->
+<!-- MISSION 02 -->
 <div class="section">
   <div class="section-rule"></div>
   <div class="section-eyebrow">Active Mission</div>
-  <h2 class="section-title">Mission 01</h2>
-  <p class="section-intro">Your inaugural objective. Physically demanding, technically honest, and close enough to Denver to work as a Friday-to-Sunday commitment. This is where Charlie Mike earns its name.</p>
+  <h2 class="section-title">Mission 02</h2>
+  <p class="section-intro">The second objective on the roster. Physically demanding, technically honest, and close enough to Denver to work as a Friday-to-Sunday commitment.</p>
 
   <div class="mission-card">
 
     <!-- Header -->
     <div class="mission-header">
       <div>
-        <div class="mission-number">Mission 01 · August 14–16, 2026</div>
+        <div class="mission-number">Mission 02 · August 14–16, 2026</div>
         <div class="mission-title">Longs Peak — Keyhole Route</div>
         <div class="mission-subtitle">Rocky Mountain National Park · Estes Park, Colorado · ~1 hr 45 min from Denver</div>
       </div>
@@ -226,6 +233,12 @@
         <span class="badge badge-hard">Strenuous</span>
         <span class="badge badge-permit">Park Entrance Fee Required</span>
       </div>
+    </div>
+
+    <!-- RSVP -->
+    <div class="rsvp-bar">
+      <p>Confirm your spot and coordinate with the group — <strong>RSVPs and trip logistics happen on Meetup.</strong></p>
+      <a href="https://www.meetup.com/charlie-mike" target="_blank" class="rsvp-btn">RSVP on Meetup</a>
     </div>
 
     <!-- Stats -->
@@ -398,7 +411,7 @@
             </div>
             <div class="tl-item">
               <div class="tl-time">12:00 PM</div>
-              <div class="tl-desc"><strong>Depart for Denver.</strong> ~1 hr 45 min. Everyone home by early afternoon. Mission 01 complete. Start talking about Mission 02.</div>
+              <div class="tl-desc"><strong>Depart for Denver.</strong> ~1 hr 45 min. Everyone home by early afternoon. Mission 02 complete. Start talking about Mission 03.</div>
             </div>
           </div>
         </div>
@@ -547,40 +560,40 @@
   <div class="section" style="padding-top: 0; padding-bottom: 0;">
     <div class="section-eyebrow">In the pipeline</div>
     <h2 class="section-title">Future Missions</h2>
-    <p class="section-intro">These objectives are queued and will be built out as Charlie Mike grows. Mission 02 is the natural progression toward Capitol Peak.</p>
+    <p class="section-intro">These objectives are queued and will be built out as Charlie Mike grows. Mission 03 is the natural progression toward Capitol Peak.</p>
     <div class="upcoming-grid">
       <div class="upcoming-card">
-        <div class="upcoming-num">Mission 02</div>
+        <div class="upcoming-num">Mission 03</div>
         <div class="upcoming-title">Capitol Peak</div>
-        <div class="upcoming-desc">The hardest standard 14er in Colorado. Class 4, knife-edge ridge, 1,500 ft exposure. Requires Mission 01 as prerequisite. Multi-day approach via Capitol Lake.</div>
+        <div class="upcoming-desc">The hardest standard 14er in Colorado. Class 4, knife-edge ridge, 1,500 ft exposure. Requires Mission 02 as prerequisite. Multi-day approach via Capitol Lake.</div>
         <span class="upcoming-season">Summer / Fall</span>
       </div>
       <div class="upcoming-card">
-        <div class="upcoming-num">Mission 03</div>
+        <div class="upcoming-num">Mission 04</div>
         <div class="upcoming-title">Weminuche Backpack</div>
         <div class="upcoming-desc">3-day wilderness traverse in Colorado's largest wilderness area. Full packs, high alpine, serious mileage. Wilderness permit required — quota system.</div>
         <span class="upcoming-season">Summer</span>
       </div>
       <div class="upcoming-card">
-        <div class="upcoming-num">Mission 04</div>
+        <div class="upcoming-num">Mission 05</div>
         <div class="upcoming-title">Colorado Trail Bikepacking</div>
         <div class="upcoming-desc">2-day self-supported bikepacking near Salida. Loaded bikes, singletrack, riverside camping. No permit required. Vehicle shuttle logistics needed.</div>
         <span class="upcoming-season">Summer / Fall</span>
       </div>
       <div class="upcoming-card">
-        <div class="upcoming-num">Mission 05</div>
+        <div class="upcoming-num">Mission 06</div>
         <div class="upcoming-title">10th Mtn Hut Traverse</div>
         <div class="upcoming-desc">Hut-to-hut route through the Sawatch or Elk ranges. Day packs, bunk beds, communal kitchen. Books out 6 months in advance.</div>
         <span class="upcoming-season">Fall / Winter</span>
       </div>
       <div class="upcoming-card">
-        <div class="upcoming-num">Mission 06</div>
+        <div class="upcoming-num">Mission 07</div>
         <div class="upcoming-title">Browns Canyon Whitewater</div>
         <div class="upcoming-desc">Class IV–V Arkansas River run with riverside camping. National Monument overnight permit required. Guided or self-supported options available.</div>
         <span class="upcoming-season">Spring / Summer</span>
       </div>
       <div class="upcoming-card">
-        <div class="upcoming-num">Mission 07</div>
+        <div class="upcoming-num">Mission 08</div>
         <div class="upcoming-title">Crested Butte MTB</div>
         <div class="upcoming-desc">2-day advanced mountain bike weekend. Shuttle-assist trail system, trailhead camping, some of Colorado's best singletrack. Low cost, own gear required.</div>
         <span class="upcoming-season">Summer / Fall</span>
