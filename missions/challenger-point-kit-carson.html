@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charlie Mike — Challenger Point and Kit Carson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --near-black:#0D0D0D;
+    --charcoal:#1C1C1C;
+    --olive:#4B5320;
+    --amber:#C8820A;
+    --danger:#A63228;
+    --fog:#8A9BA8;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--near-black);
+    color:#EDEDE8;
+    font-family:'Barlow', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Barlow Condensed', sans-serif;
+    text-transform:uppercase;
+    font-weight:700;
+    letter-spacing:0.02em;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
+
+  /* HEADER */
+  header{
+    background:
+      linear-gradient(180deg, rgba(13,13,13,0.55) 0%, rgba(13,13,13,0.92) 78%, var(--near-black) 100%),
+      radial-gradient(ellipse at 30% 20%, rgba(75,83,32,0.35), transparent 60%);
+    border-bottom:3px solid var(--olive);
+    padding:64px 0 40px;
+  }
+  .pipeline-tag{
+    display:inline-block;
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--amber);
+    border:1px solid var(--amber);
+    padding:4px 12px;
+    border-radius:2px;
+    margin-bottom:18px;
+  }
+  .mission-eyebrow{
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:15px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--fog);
+    margin-bottom:10px;
+  }
+  header h1{
+    font-size:64px;
+    line-height:0.98;
+    color:#F5F3EC;
+    margin-bottom:10px;
+  }
+  header .subtitle{
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:22px;
+    letter-spacing:0.04em;
+    color:var(--fog);
+    text-transform:uppercase;
+    margin-bottom:30px;
+  }
+  .statbar{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:rgba(138,155,168,0.25);
+    border:1px solid rgba(138,155,168,0.25);
+  }
+  .stat{
+    background:var(--charcoal);
+    padding:16px 18px;
+  }
+  .stat .num{
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:30px;
+    font-weight:700;
+    color:var(--amber);
+    line-height:1;
+  }
+  .stat .lbl{
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--fog);
+    margin-top:6px;
+  }
+
+  /* SECTIONS */
+  section{padding:52px 0; border-bottom:1px solid rgba(138,155,168,0.15);}
+  .section-num{
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:14px;
+    letter-spacing:0.16em;
+    color:var(--olive);
+    background:#e7ecd9;
+    display:inline-block;
+    padding:3px 10px;
+    margin-bottom:14px;
+    color:var(--olive);
+    background:none;
+    border-left:3px solid var(--olive);
+    padding-left:10px;
+  }
+  .title{
+    font-size:34px;
+    color:#F5F3EC;
+    margin-bottom:18px;
+  }
+  p{color:#D6D6CE; margin-bottom:14px; max-width:70ch;}
+  strong{color:#F5F3EC;}
+
+  .risk-badges{
+    display:flex; flex-wrap:wrap; gap:10px; margin:20px 0 24px;
+  }
+  .badge{
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:13px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:6px 12px;
+    border-radius:2px;
+    background:var(--charcoal);
+    border:1px solid var(--fog);
+    color:#EDEDE8;
+  }
+  .badge.high{border-color:var(--danger); color:#E9B4AB;}
+  .badge.mod{border-color:var(--amber); color:#EFC98A;}
+
+  /* STAT GRID (logistics) */
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px 28px; margin-top:10px;}
+  .grid-item{border-top:1px solid rgba(138,155,168,0.25); padding-top:10px;}
+  .grid-item .k{
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--fog);
+    margin-bottom:4px;
+  }
+  .grid-item .v{color:#EDEDE8; font-size:15px;}
+
+  /* DAY CARDS */
+  .day{
+    background:var(--charcoal);
+    border-left:3px solid var(--olive);
+    padding:22px 24px;
+    margin-bottom:18px;
+  }
+  .day h3{
+    font-size:22px;
+    color:var(--amber);
+    margin-bottom:4px;
+  }
+  .day .day-sub{
+    font-size:13px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--fog);
+    margin-bottom:14px;
+    font-family:'Barlow Condensed', sans-serif;
+  }
+  .day ul{margin:0; padding-left:20px; color:#D6D6CE;}
+  .day li{margin-bottom:8px;}
+
+  /* CALLOUT */
+  .callout{
+    background:rgba(200,130,10,0.08);
+    border:1px solid rgba(200,130,10,0.4);
+    border-left:4px solid var(--amber);
+    padding:20px 22px;
+    margin:20px 0;
+  }
+  .callout .ctitle{
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:15px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin-bottom:8px;
+  }
+  .callout p:last-child{margin-bottom:0;}
+
+  /* OPTIONAL EXTENSION BOX (within day cards) */
+  .ext{
+    margin-top:18px;
+    background:rgba(13,13,13,0.4);
+    border:1px dashed var(--amber);
+    padding:20px 22px;
+  }
+  .ext-tag{
+    display:inline-block;
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--near-black);
+    background:var(--amber);
+    padding:3px 10px;
+    margin-bottom:12px;
+  }
+  .ext h4{
+    font-size:20px;
+    color:#F5F3EC;
+    margin-bottom:8px;
+  }
+  .ext p{color:#D6D6CE; font-size:15px; max-width:none;}
+  .ext-stats{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:rgba(138,155,168,0.2);
+    border:1px solid rgba(138,155,168,0.2);
+    margin:14px 0 18px;
+  }
+  .ext-stats div{background:rgba(28,28,28,0.95); padding:10px 12px;}
+  .ext-stats .n{
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:19px;
+    font-weight:700;
+    color:var(--amber);
+    line-height:1;
+  }
+  .ext-stats .l{
+    font-size:10.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--fog);
+    margin-top:5px;
+  }
+  .ext .decision{
+    border-left:3px solid var(--danger);
+    padding-left:14px;
+    margin-top:16px;
+  }
+  @media (max-width:640px){
+    .ext-stats{grid-template-columns:1fr 1fr;}
+  }
+
+  /* GEAR / MEAL LISTS */
+  .cols3{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:8px;}
+  .col h4{
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:16px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--fog);
+    margin-bottom:10px;
+    border-bottom:1px solid rgba(138,155,168,0.3);
+    padding-bottom:6px;
+  }
+  .col ul{list-style:none; padding:0;}
+  .col li{
+    color:#D6D6CE;
+    font-size:14.5px;
+    padding:5px 0 5px 18px;
+    position:relative;
+  }
+  .col li::before{
+    content:"—";
+    position:absolute; left:0; color:var(--olive);
+  }
+
+  table{width:100%; border-collapse:collapse; margin-top:10px;}
+  th,td{
+    text-align:left;
+    padding:10px 12px;
+    border-bottom:1px solid rgba(138,155,168,0.2);
+    font-size:14.5px;
+    color:#D6D6CE;
+  }
+  th{
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--fog);
+  }
+  td.amt{color:var(--amber); font-weight:600;}
+  tr.total td{color:#F5F3EC; font-weight:700; border-top:2px solid var(--olive); border-bottom:none;}
+
+  .checklist{list-style:none; padding:0; margin-top:6px;}
+  .checklist li{
+    position:relative;
+    padding:9px 0 9px 30px;
+    color:#D6D6CE;
+    border-bottom:1px solid rgba(138,155,168,0.12);
+  }
+  .checklist li::before{
+    content:"";
+    position:absolute; left:0; top:11px;
+    width:15px; height:15px;
+    border:1px solid var(--amber);
+  }
+
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px 28px; margin-top:10px;}
+  .contact{background:var(--charcoal); padding:16px 18px; border-left:3px solid var(--danger);}
+  .contact .role{
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--fog);
+  }
+  .contact .who{font-size:16px; color:#F5F3EC; margin:2px 0 4px;}
+  .contact .num{color:var(--amber); font-weight:600;}
+
+  footer{padding:40px 0 60px;}
+  .fmark{
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:22px;
+    letter-spacing:0.2em;
+    color:var(--olive);
+    margin-bottom:10px;
+  }
+  footer p{color:var(--fog); font-size:13.5px; max-width:none;}
+
+  @media (max-width:640px){
+    header h1{font-size:44px;}
+    .statbar{grid-template-columns:1fr 1fr;}
+    .grid2, .cols3, .contact-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="pipeline-tag">Pipeline Status — Mission Number Pending</div>
+    <div class="mission-eyebrow">Charlie Mike Mission File</div>
+    <h1>Challenger Point &amp; Kit Carson</h1>
+    <div class="subtitle">North Slope Route · Sangre de Cristo Wilderness</div>
+    <div class="statbar">
+      <div class="stat"><div class="num">14,086'</div><div class="lbl">Summit Elevation</div></div>
+      <div class="stat"><div class="num">5,400'</div><div class="lbl">Total Gain</div></div>
+      <div class="stat"><div class="num">13.5 mi</div><div class="lbl">Round Trip</div></div>
+      <div class="stat"><div class="num">Diff. Cl 2</div><div class="lbl">Difficulty</div></div>
+      <div class="stat"><div class="num">8,850'</div><div class="lbl">Trailhead Elev.</div></div>
+      <div class="stat"><div class="num">~3.5–4 hrs</div><div class="lbl">Drive From Denver</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <div class="section-num">01 / The Objective</div>
+  <h2 class="title">Overview</h2>
+  <p>Challenger Point tops out at 14,086 feet in the Sangre de Cristo Wilderness, part of the Kit Carson massif above Crestone. It's a backcountry objective — no drive-up trailhead shortcuts, no crowds like the Front Range 14ers. The approach alone is a full day: over four miles and roughly 2,800 feet of gain to reach camp at Willow Lake before the mountain even starts.</p>
+  <p>The standard North Slope route is rated Difficult Class 2 — mostly a strenuous hike, but with a genuine crux: 600 feet of steep, loose, talus-covered terrain that demands real route-finding. Exposure, rockfall, and route-finding are all rated <strong>Considerable</strong> by 14ers.com. This is a step up from a straightforward trail hike, and the group should be squared away on pace, footing, and communication before committing to the crux.</p>
+  <div class="risk-badges">
+    <span class="badge high">Exposure — Considerable</span>
+    <span class="badge high">Rockfall — Considerable</span>
+    <span class="badge high">Route-Finding — Considerable</span>
+    <span class="badge mod">Commitment — Moderate</span>
+  </div>
+</section>
+
+<section>
+  <div class="section-num">02 / The Route</div>
+  <h2 class="title">North Slope, Standard Route</h2>
+  <p>From Willow Lake, the trail climbs past a waterfall and boulder field to the flats above the lake, then follows cairns and intermittent trail through zigzagging ledges and another boulder field near 12,300'. Above that, the path becomes progressively less distinct, following the left side of a prominent rock rib as the grade steepens toward 13,200'.</p>
+  <p>At the top of the rib, the route traverses left into the crux: roughly 600 feet of steep, loose, talus-covered ground. Cairns mark the way, but this section takes patience — the goal is to keep it under Class 3 by finding the cleanest line through the rock. Stay to the right of the snow-filled gully here; it can hold snow well into August in a normal year. Above the talus, a notch in the ridge leads to the summit ridgeline, which runs southeast to the top. Some sections of ridge narrow — staying slightly left of the crest keeps exposure more comfortable if needed.</p>
+  <div class="callout">
+    <div class="ctitle">Good to know</div>
+    <p>Strong, weather-clear parties sometimes extend from Challenger's summit to Kit Carson Peak. It's a real step up in difficulty and time, not a quick bonus lap — see the detailed optional extension in Saturday's plan below for the route, added stats, and decision point.</p>
+  </div>
+</section>
+
+<section>
+  <div class="section-num">03 / Itinerary</div>
+  <h2 class="title">Three-Day Plan</h2>
+
+  <div class="day">
+    <h3>Friday — Drive & Hike In</h3>
+    <div class="day-sub">Denver → Willow Creek Trailhead → Willow Lake Camp</div>
+    <ul>
+      <li>Depart Denver for Crestone — roughly 194 miles / 3.5–4 hours via US-285 and CO-17, plus the final ~2 miles on dirt Forest Service Road 949 to the Willow Creek Trailhead (8,850').</li>
+      <li>Hike in via the Willow Creek Trail — approximately 4.75 miles and 2,800 feet of gain to camp near Willow Lake (~11,560').</li>
+      <li>Set camp respecting the wilderness siting rules (see Section 04), filter water, eat, and walk the group through tomorrow's route and turnaround plan before dark.</li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <h3>Saturday — Summit Day</h3>
+    <div class="day-sub">Willow Lake Camp → Challenger Point → Camp (Optional: + Kit Carson Peak)</div>
+    <ul>
+      <li>Alpine start — 4:00–4:30 AM covers a Challenger-only day. If the group wants the Kit Carson option on the table, start earlier, around 3:00–3:30 AM, to build in the extra hours without eating into the storm-safety margin.</li>
+      <li>Roughly 4 miles round trip and 2,600 feet of gain from camp to the 14,086' Challenger Point summit.</li>
+      <li>Take the talus crux deliberately — this is the section where the group should spread out, communicate, and not rush.</li>
+      <li>Challenger's summit is the natural checkpoint to decide on Kit Carson — see the extension below.</li>
+      <li>Descend the same route back to camp; second night at Willow Lake.</li>
+    </ul>
+
+    <div class="ext">
+      <span class="ext-tag">Optional Extension</span>
+      <h4>Kit Carson Peak — 14,167'</h4>
+      <p>From Challenger's summit, Kit Carson is right there across the way — and reachable, but it's a genuine step up from the day above, not a quick bonus lap. 14ers.com rates the connector Easy Class 3, with exposure, rockfall, route-finding, and commitment all at Considerable (Challenger alone rates Commitment as only Moderate).</p>
+
+      <div class="ext-stats">
+        <div><div class="n">+1.5 mi</div><div class="l">Added RT from camp</div></div>
+        <div><div class="n">+850 ft</div><div class="l">Added gain from camp</div></div>
+        <div><div class="n">Easy Cl 3</div><div class="l">Difficulty</div></div>
+        <div><div class="n">+3–5 hrs</div><div class="l">Added time (est.)</div></div>
+      </div>
+
+      <p><strong>The route:</strong> From Challenger, descend east to the 13,800' saddle and pick up Kit Carson Avenue — an exposed Class 2 ledge running south along the peak to a 13,960' saddle near a rock fin called The Prow. The Avenue continues, descending east through a wide notch. Near 13,650', watch for the entry to a broad gully on the left, just before a rock rib. Ascend the gully — roughly 450 feet on Difficult Class 2 terrain, with brief easy Class 3 moves higher up — to the summit ridge and Kit Carson's summit.</p>
+
+      <p><strong>The return is the catch:</strong> there's no shortcut down. The group retraces the Avenue and gully, then re-climbs back up near Challenger's summit before descending Challenger's standard route to camp. That's where most of the added 850 feet actually comes from — it's down-and-back-up terrain the whole way, not a clean one-way gain, and it moves slowly.</p>
+
+      <div class="decision">
+        <p><strong>Decision point — Challenger's summit:</strong> if the group is standing there comfortably by mid-morning, feeling strong, with clear skies, Kit Carson is realistically in reach. If it's already late morning, weather is building, or anyone's cooked from the crux, Challenger is a complete, solid day on its own — Kit Carson can wait for a return trip. The Avenue and gully aren't the place to be racing a storm or towing a tired group.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <h3>Sunday — Pack Out</h3>
+    <div class="day-sub">Camp → Trailhead → Denver</div>
+    <ul>
+      <li>Break camp, pack out everything (including trash and any food scraps), and hike the 4.75 miles back to the trailhead.</li>
+      <li>Drive back to Denver, with a food/regroup stop in Salida or along US-285 as the group prefers.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="section-num">04 / Camp & Wilderness Regulations</div>
+  <h2 class="title">Logistics</h2>
+  <div class="grid2">
+    <div class="grid-item"><div class="k">Land Management</div><div class="v">Rio Grande National Forest, Saguache Ranger District</div></div>
+    <div class="grid-item"><div class="k">Wilderness Area</div><div class="v">Sangre de Cristo Wilderness</div></div>
+    <div class="grid-item"><div class="k">Group Size Limit</div><div class="v">15 people max in the Forest Service portion — fits Charlie Mike's standard 7–15 roster with no adjustment needed</div></div>
+    <div class="grid-item"><div class="k">Camping Setback</div><div class="v">No camping within 100 ft of any stream or 300 ft of Willow Lake, except in designated signed sites</div></div>
+    <div class="grid-item"><div class="k">Campfires</div><div class="v">Prohibited within the same 100 ft / 300 ft buffers — plan on stoves only near camp</div></div>
+    <div class="grid-item"><div class="k">Food Storage</div><div class="v">Rio Grande NF requires proper food storage (bear-resistant canister or approved hang) at all recreation sites, April 1–Dec 1</div></div>
+    <div class="grid-item"><div class="k">Permits</div><div class="v">No reservation or fee permit currently required — standard wilderness regulations apply. Worth a quick call to the Saguache Ranger District if the self-issue system changes</div></div>
+    <div class="grid-item"><div class="k">Water</div><div class="v">Willow Creek and Willow Lake — filter or treat</div></div>
+    <div class="grid-item"><div class="k">Dogs</div><div class="v">Allowed on leash or under direct verbal control</div></div>
+    <div class="grid-item"><div class="k">Fire Danger (current)</div><div class="v">Moderate across the Saguache Ranger District, no active fire restrictions as of this writing — re-check before departure</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-num">05 / Gear List</div>
+  <h2 class="title">What to Bring</h2>
+  <div class="cols3">
+    <div class="col">
+      <h4>On the Mountain</h4>
+      <ul>
+        <li>Sturdy boots or trail runners with real tread — the talus crux punishes soft soles</li>
+        <li>Trekking poles</li>
+        <li>Helmet (recommended given the rockfall rating; strongly recommended if the Kit Carson extension is in play)</li>
+        <li>Map, compass, or offline GPS track — route-finding is genuinely part of this climb</li>
+        <li>Headlamp with spare batteries</li>
+        <li>Layers: insulated jacket, wind shell, gloves, warm hat</li>
+        <li>3+ liters water capacity, filter/treatment</li>
+        <li>Sun protection: glasses, sunscreen, hat</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4>Camp</h4>
+      <ul>
+        <li>Tent (freestanding recommended — rocky, uneven sites)</li>
+        <li>0-20°F sleeping bag</li>
+        <li>Sleeping pad</li>
+        <li>Backpacking stove + fuel</li>
+        <li>Bear-resistant food canister or approved hang kit</li>
+        <li>Water filter for camp resupply</li>
+        <li>Trowel and WAG bag / LNT waste kit</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4>Safety & Comms</h4>
+      <ul>
+        <li>Satellite messenger (no reliable cell signal from the trailhead on)</li>
+        <li>First aid kit</li>
+        <li>Whistle</li>
+        <li>Printed route beta / topo per subgroup</li>
+        <li>Emergency contact card with Sheriff and hospital info</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-num">06 / Meal Plan</div>
+  <h2 class="title">Food</h2>
+  <div class="grid2">
+    <div class="grid-item"><div class="k">Friday Dinner</div><div class="v">Freeze-dried or one-pot meal at camp</div></div>
+    <div class="grid-item"><div class="k">Saturday Breakfast</div><div class="v">Fast-burning carbs — oatmeal, bars — eaten before the alpine start</div></div>
+    <div class="grid-item"><div class="k">Saturday On-Route</div><div class="v">High-calorie snacks: nut butter, jerky, gels, electrolyte mix — eat and drink on a schedule, not just when hungry</div></div>
+    <div class="grid-item"><div class="k">Saturday Dinner</div><div class="v">Hearty freeze-dried meal at camp — recovery calories matter after a summit push</div></div>
+    <div class="grid-item"><div class="k">Sunday Breakfast</div><div class="v">Light, packable — coffee/tea and a bar before breaking camp</div></div>
+    <div class="grid-item"><div class="k">Group Note</div><div class="v">Food storage rules apply the whole trip — plan meals that pack into the canister</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-num">07 / Emergency Contacts</div>
+  <h2 class="title">In Case of Trouble</h2>
+  <div class="contact-grid">
+    <div class="contact">
+      <div class="role">Search & Rescue Coordination</div>
+      <div class="who">Saguache County Sheriff's Office</div>
+      <div class="num">719-655-2544</div>
+    </div>
+    <div class="contact">
+      <div class="role">Nearest Full-Service ER</div>
+      <div class="who">San Luis Valley Health Regional Medical Center, Alamosa</div>
+      <div class="num">~50 miles / ~1 hr from Crestone</div>
+    </div>
+    <div class="contact">
+      <div class="role">Forest Service — General Info</div>
+      <div class="who">Rio Grande National Forest, Supervisor's Office</div>
+      <div class="num">719-657-3321</div>
+    </div>
+    <div class="contact">
+      <div class="role">Emergency</div>
+      <div class="who">911 (limited/no cell signal beyond the trailhead — satellite messenger is the reliable option)</div>
+      <div class="num">&nbsp;</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-num">08 / Cost Estimate</div>
+  <h2 class="title">Per-Person Cost</h2>
+  <table>
+    <tr><th>Item</th><th>Estimate</th></tr>
+    <tr><td>Fuel share (carpool, ~390 mi round trip)</td><td class="amt">$25–35</td></tr>
+    <tr><td>Food (2 dinners, 2 breakfasts, trail snacks)</td><td class="amt">$25–35</td></tr>
+    <tr><td>Camping / wilderness access</td><td class="amt">$0 (no fee)</td></tr>
+    <tr><td>Optional gear rental (poles, canister, etc.)</td><td class="amt">$0–20</td></tr>
+    <tr class="total"><td>Estimated Total</td><td class="amt">$50–90</td></tr>
+  </table>
+</section>
+
+<section style="border-bottom:none;">
+  <div class="section-num">09 / Trip Lead Checklist</div>
+  <h2 class="title">Pre-Mission</h2>
+  <ul class="checklist">
+    <li>Check current fire restrictions and fire danger for the Saguache Ranger District before departure</li>
+    <li>Confirm trailhead and FS Road 949 conditions</li>
+    <li>Confirm roster is within the 15-person wilderness group limit (standard Charlie Mike roster already fits)</li>
+    <li>Verify each participant has a bear-resistant food canister or approved hang setup</li>
+    <li>Confirm at least one satellite messenger per subgroup</li>
+    <li>Print route beta and topo for each subgroup — cell signal is not reliable past the trailhead</li>
+    <li>Brief the group on the talus crux and the plan to spread out and move deliberately through it</li>
+    <li>If the Kit Carson extension is a live option, confirm the earlier 3:00–3:30 AM start and walk the group through the decision point and turnaround criteria before Saturday</li>
+    <li>Check on snow conditions in the summit gully if climbing early in the season (can linger into August)</li>
+    <li>Share Saguache County Sheriff and San Luis Valley Health contact info in the group comms channel</li>
+    <li>Confirm camp siting plan respects the 100 ft / 300 ft water setbacks at Willow Lake</li>
+  </ul>
+</section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="fmark">CHARLIE MIKE</div>
+    <p>Challenger Point (North Slope Route) with optional Kit Carson Peak extension — Sangre de Cristo Wilderness, Rio Grande National Forest. Route stats, wilderness regulations, and trailhead directions verified against 14ers.com and U.S. Forest Service sources as of July 2026. Conditions, fire restrictions, and regulations can change season to season — re-verify before booking and before departure. Mission number pending pipeline assignment.</p>
+  </div>
+</footer>
+
+</body>
+</html>
